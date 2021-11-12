@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RT_CS
+namespace RT_CS.sceneObjects
 {
-    class Class1
+    class Scene
     {
+        private float length, width;
     }
+
 }
