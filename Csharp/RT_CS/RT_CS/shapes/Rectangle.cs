@@ -8,7 +8,7 @@ namespace RT_CS.shapes
 
     class Rectangle : Triangle
     {
-        private Vector3 VertexD;
+        private Vector3 vertexD;
     }
 
 

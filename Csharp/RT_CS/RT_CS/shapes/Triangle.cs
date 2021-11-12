@@ -8,7 +8,7 @@ namespace RT_CS.shapes
 
     class Triangle : Shape
     {
-        protected Vector3 VertexA, VertexB, VertexC;
+        protected Vector3 vertexA, vertexB, vertexC;
     }
 
 
