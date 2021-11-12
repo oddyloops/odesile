@@ -1,4 +1,6 @@
 #pragma once
+#include "vector3.h"
+using namespace utility;
 namespace scene_objects
 {
 	class scene
@@ -6,5 +8,6 @@ namespace scene_objects
 	private:
 		float length;
 		float width;
+		vector3 background;
 	};
 }
