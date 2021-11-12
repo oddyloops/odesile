@@ -66,6 +66,9 @@
     <ClInclude Include="orthographic.h">
       <Filter>Header Files\cameras</Filter>
     </ClInclude>
+    <ClInclude Include="operators.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -94,6 +97,9 @@
     </ClCompile>
     <ClCompile Include="orthographic.cpp">
       <Filter>Source Files\cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="operators.cpp">
+      <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

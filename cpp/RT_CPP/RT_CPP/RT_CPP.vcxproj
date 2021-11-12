@@ -140,6 +140,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="operators.h" />
     <ClInclude Include="orthographic.h" />
     <ClInclude Include="perspective.h" />
     <ClInclude Include="rectangle.h" />
@@ -156,6 +157,7 @@
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="perspective.cpp" />
     <ClCompile Include="orthographic.cpp" />
+    <ClCompile Include="operators.cpp" />
     <ClCompile Include="sphere.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="vector3.cpp" />

@@ -5,5 +5,7 @@ namespace utility
 	{
 	public:
 		float x, y, z;
+		float magnitude();
+		vector3 normalize();
 	};
 }
