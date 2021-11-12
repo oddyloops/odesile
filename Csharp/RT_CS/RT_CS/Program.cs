@@ -31,7 +31,7 @@ namespace RT_CS
             {
                 protected Vector3 VertexA, VertexB, VertexC;
             }
-            class Rectangle : Shape
+            class Rectangle : Triangle
             {
                 private Vector3 VertexD;
             }
