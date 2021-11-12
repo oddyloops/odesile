@@ -5,7 +5,7 @@ using System.Text;
 namespace RT_CS.shapes
 {
 
-    class Shape
+    public class Shape
     { }
 
 }

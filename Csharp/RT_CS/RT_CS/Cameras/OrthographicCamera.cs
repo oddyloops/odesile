@@ -2,10 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace RT_CS.utility
+namespace RT_CS.Cameras
 {
-    public struct Vector3
+    public class OrthographicCamera : Camera
     {
-        public float x, y, z;
     }
 }

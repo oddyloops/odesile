@@ -6,7 +6,7 @@ using System.Text;
 namespace RT_CS.shapes
 {
 
-    class Triangle : Shape
+    public class Triangle : Shape
     {
         protected Vector3 vertexA, vertexB, vertexC;
     }

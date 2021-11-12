@@ -6,7 +6,7 @@ using System.Text;
 namespace RT_CS.shapes
 {
 
-    class Sphere : Shape
+    public class Sphere : Shape
     {
         private Vector3 centre;
     }
