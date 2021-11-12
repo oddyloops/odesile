@@ -6,7 +6,7 @@ namespace scene_objects
 	class scene
 	{
 	private:
-		float length;
+		float height;
 		float width;
 		vector3 background;
 	};

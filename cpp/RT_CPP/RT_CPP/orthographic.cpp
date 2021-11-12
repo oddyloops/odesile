@@ -1,2 +1,2 @@
-#include "camera.h"
+#include "orthographic.h"
 using namespace cameras;
