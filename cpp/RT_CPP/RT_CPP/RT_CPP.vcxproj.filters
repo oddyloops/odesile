@@ -69,6 +69,9 @@
     <ClInclude Include="operators.h">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
+    <ClInclude Include="ray.h">
+      <Filter>Header Files\cameras</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -100,6 +103,9 @@
     </ClCompile>
     <ClCompile Include="operators.cpp">
       <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="ray.cpp">
+      <Filter>Source Files\cameras</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

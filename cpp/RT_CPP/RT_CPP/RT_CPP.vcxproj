@@ -143,6 +143,7 @@
     <ClInclude Include="operators.h" />
     <ClInclude Include="orthographic.h" />
     <ClInclude Include="perspective.h" />
+    <ClInclude Include="ray.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="scene.h" />
     <ClInclude Include="shape.h" />
@@ -151,6 +152,7 @@
     <ClInclude Include="vector3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="ray.cpp" />
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="scene.cpp" />
     <ClCompile Include="shape.cpp" />
