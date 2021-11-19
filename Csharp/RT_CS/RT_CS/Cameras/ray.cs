@@ -5,7 +5,7 @@ using RT_CS.utility;
 
 namespace RT_CS.Cameras
 {
-    public struct ray
+    public struct Ray
     {
         public Vector3 posit, direct;
     }

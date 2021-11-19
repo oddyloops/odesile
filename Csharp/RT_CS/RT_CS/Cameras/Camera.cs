@@ -22,7 +22,7 @@ namespace RT_CS.Cameras
         protected float pixelWidth;
         protected float pixelHeight;
 
-        public abstract ray Project(float px, float py);
+        public abstract Ray Project(float px, float py);
 
         public Vector3 ComputePixel(float px, float py)
         {
