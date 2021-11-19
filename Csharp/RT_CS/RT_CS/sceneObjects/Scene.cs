@@ -7,8 +7,9 @@ namespace RT_CS.sceneObjects
 {
     public class Scene
     {
-        private float width, height;
-        private Vector3 background;
+        public float Width { get; set; } 
+        public float Height { get; set; }
+        public Vector3 Background { get; set; }
         
     }
 
