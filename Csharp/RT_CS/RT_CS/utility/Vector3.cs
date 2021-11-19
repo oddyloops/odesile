@@ -10,13 +10,23 @@ namespace RT_CS.utility
 
         public float Magnitude()
         {
-            return (float)Math.Sqrt(x * x + y * y + z * z);
+            return (float)Math.Sqrt(MagnitudeSq());
+        }
+
+        public float MagnitudeSq()
+        {
+            return x * x + y * y + z * z;
         }
 
         public Vector3 Normalize()
         {
             float magnitude = Magnitude();
             return this / magnitude;
+        }
+
+        public static float Dot(Vector3 a, Vector3 b)
+        {
+            return a.x * b.x + a.y * b.y + a.z * b.z;
         }
 
         public static Vector3 operator /(Vector3 v, float f)
