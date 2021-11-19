@@ -72,6 +72,9 @@
     <ClInclude Include="ray.h">
       <Filter>Header Files\cameras</Filter>
     </ClInclude>
+    <ClInclude Include="intersection_record.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -106,6 +109,9 @@
     </ClCompile>
     <ClCompile Include="ray.cpp">
       <Filter>Source Files\cameras</Filter>
+    </ClCompile>
+    <ClCompile Include="intersection_record.cpp">
+      <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
