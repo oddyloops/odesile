@@ -14,12 +14,14 @@ renderer::renderer(scene_database& db) : db(db)
 
 void renderer::render()
 {
-	float width = db.get_scene().get_width();
-	float height = db.get_scene().get_height();
+	int width = db.get_scene().get_width();
+	int height = db.get_scene().get_height();
 	camera& cam = db.get_camera();
 	vector<shape&> shapes = db.get_shapes();
+	vector3** finalImages = new vector3*[height];
 	for (int y = 0; y < height; y++)
 	{
+		finalImages[y] = new vector3[width];
 		for (int x = 0; x < width; x++)
 		{
 			intersection_record& rec = run_intersection(cam, shapes, x, y);
@@ -34,6 +36,7 @@ void renderer::render()
 			{
 				pxColor = db.get_scene().get_background();
 			}
+			finalImages[y][x] = pxColor;
 		}
 	}
 }
