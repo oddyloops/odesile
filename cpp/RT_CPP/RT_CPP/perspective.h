@@ -6,9 +6,9 @@ namespace cameras
 	{
 	public:
 		perspective(float farPlane, float focalLength, float fovRadians, vector3 upDirection, vector3 target, vector3 position,
-			float sceneWidth, float sceneHeight);
+			int sceneWidth, int sceneHeight);
 
-		ray project(float pX, float pY);
+		ray project(int pX, int pY) const;
 
 	};
 }

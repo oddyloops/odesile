@@ -14,7 +14,7 @@ namespace shapes
 
 	public :
 		sphere(int id, vector3 c, float r);
-		void intersect(ray r, intersection_record& rec);
+		void intersect(ray r, intersection_record& rec) const;
 	};
 
 	

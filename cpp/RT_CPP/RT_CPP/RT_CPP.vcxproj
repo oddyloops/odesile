@@ -146,7 +146,9 @@
     <ClInclude Include="perspective.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="rectangle.h" />
+    <ClInclude Include="renderer.h" />
     <ClInclude Include="scene.h" />
+    <ClInclude Include="scene_database.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="sphere.h" />
     <ClInclude Include="triangle.h" />
@@ -155,7 +157,9 @@
   <ItemGroup>
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="rectangle.cpp" />
+    <ClCompile Include="renderer.cpp" />
     <ClCompile Include="scene.cpp" />
+    <ClCompile Include="scene_database.cpp" />
     <ClCompile Include="shape.cpp" />
     <ClCompile Include="camera.cpp" />
     <ClCompile Include="perspective.cpp" />

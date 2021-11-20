@@ -12,11 +12,8 @@ namespace shapes
 		int id;
 
 	public:
-		shape(int ids)
-		{
-			id = ids;
-		}
+		shape(int ids);
 
-		virtual void intersect(ray r, intersection_record& rec) = 0;
+		virtual void intersect(ray r, intersection_record& rec) const = 0;
 	};
 }

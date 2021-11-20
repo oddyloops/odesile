@@ -6,7 +6,7 @@
 using namespace cameras;
 
 camera::camera(float farPlane, float focalLength, float fovRadians, vector3 upDirection, vector3 target, vector3 position,
-	float sceneWidth, float sceneHeight)
+	int sceneWidth, int sceneHeight)
 	: farPlane(farPlane), focalLength (focalLength),  fovRadians(fovRadians), upDirection (upDirection), target (target), position (position)
 {
 	viewDirection = target - position;
@@ -17,7 +17,7 @@ camera::camera(float farPlane, float focalLength, float fovRadians, vector3 upDi
 	cameraUp = viewDirection * sideDirection;
 
 	float halfHeight = focalLength * tanf(0.5 * fovRadians);
-	float aspectRatio = sceneWidth / sceneHeight;
+	float aspectRatio = (float)sceneWidth / sceneHeight;
 	float halfWidth = aspectRatio * halfHeight;
 	vector3 p = center + halfHeight * cameraUp;
 	vector3 q = center - halfHeight * cameraUp;
@@ -34,7 +34,7 @@ camera::camera(float farPlane, float focalLength, float fovRadians, vector3 upDi
 }
 
 
-vector3 camera::computePixelPosition(float pX, float pY)
+vector3 camera::computePixelPosition(int pX, int pY) const
 {
 	vector3 hor = c1 - ((pX + 0.5) * pixelWidth * sideDirection);
 	return hor - ((pY + 0.5) * pixelHeight * upDirection);

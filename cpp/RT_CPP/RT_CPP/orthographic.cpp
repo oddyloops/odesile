@@ -8,7 +8,7 @@ orthographic::orthographic(float farPlane, float focalLength, float fovRadians, 
 
 }
 
-ray orthographic::project(float pX, float pY)
+ray orthographic::project(int pX, int pY) const
 {
 	ray r;
 	r.position = computePixelPosition(pX, pY);

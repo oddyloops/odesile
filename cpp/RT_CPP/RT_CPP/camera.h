@@ -30,11 +30,11 @@ namespace cameras
 
 	public:
 		camera(float farPlane, float focalLength, float fovRadians, vector3 upDirection, vector3 target, vector3 position,
-			float sceneWidth, float sceneHeight);
+			int sceneWidth, int sceneHeight);
 
-		vector3 computePixelPosition(float pX, float pY);
+		vector3 computePixelPosition(int pX, int pY) const;
 
-		virtual ray project(float pX, float pY) = 0;
+		virtual ray project(int pX, int pY) const = 0;
 		
 
 	};
