@@ -22,9 +22,9 @@ namespace RT_CS.Cameras
         protected float pixelWidth;
         protected float pixelHeight;
 
-        public abstract Ray Project(float px, float py);
+        public abstract Ray Project(int px, int py);
 
-        public Vector3 ComputePixel(float px, float py)
+        public Vector3 ComputePixel(int px, int py)
         {
             float hor = (px + 0.5f) * pixelWidth;
             float ver = (py + 0.5f) * pixelHeight;
@@ -32,7 +32,7 @@ namespace RT_CS.Cameras
             Vector3 position2 = position1 - cameraUp * ver;
             return position2;
         }
-        public Camera (float fl, float fp, Vector3 up, Vector3 po, Vector3 ta, float fi, float scw, float sch)
+        public Camera (float fl, float fp, Vector3 up, Vector3 po, Vector3 ta, float fi, int scw, int sch)
         {
             focalLength = fl;
             farPlane = fp;
@@ -48,7 +48,7 @@ namespace RT_CS.Cameras
             sideDirection = upDirection * viewDirection;
             cameraUp = viewDirection * sideDirection;
             float halfHeight = focalLength * (float)Math.Tan(0.5 * fieldOfView);
-            float aspectRatio = scw / sch;
+            float aspectRatio = (float)scw / sch;
             float halfWidth = halfHeight * aspectRatio;
             Vector3 top = centre + (halfHeight * cameraUp);
             Vector3 bottom = centre - (halfHeight * cameraUp);
