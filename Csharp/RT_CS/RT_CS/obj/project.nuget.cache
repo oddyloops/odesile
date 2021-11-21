@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rus7q5fjmZUS+ba12Xia/FNm/rlpUhtcWRBP6yYbuSgO41y7+DTaIRb7Ux4OCutsa4zTOpy21gnl1Ua4PZ41AA==",
+  "dgSpecHash": "PCRkI3Dthl2hT1iFIhKvIsjjgk47+osSsqNlqS94Y8ysN1cTi9LwvZaT30FNNa7+SkIFaZUu754B6RAbG+tCZw==",
   "success": true,
   "projectFilePath": "C:\\Users\\oddyl\\source\\repos\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\oddyl\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\oddyl\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\oddyl\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

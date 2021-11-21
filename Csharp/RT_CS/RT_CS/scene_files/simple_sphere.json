@@ -1,0 +1,35 @@
+{
+  "Scene" : {
+    "height": 720,
+    "width": 1280,
+    "background": "0,0,0"
+  },
+  "Camera": {
+    "isOrthographic": false,
+    "focalLength": 2,
+    "farPlane": 20,
+    "upDirection": "0,1,0",
+    "position": "-4,0,0",
+    "target": "2,0,0",
+    "fieldOfView": "0.785"
+  },
+  "Shapes": {
+    "Spheres": [
+      {
+        "id": 1,
+        "radius": 2,
+        "center": "3,0,0"
+      },
+      {
+        "id": 2,
+        "radius": 3,
+        "center": "4,-3,2"
+      },
+      {
+        "id": 3,
+        "radius": 1,
+        "center":  "1,5,-2"
+      }
+    ]
+  }
+}

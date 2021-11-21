@@ -9,6 +9,11 @@ namespace RT_CS.shapes
     public class Rectangle : Triangle
     {
         private Vector3 vertexD;
+
+        public Rectangle(int id) : base(id)
+        {
+
+        }
     }
 
 

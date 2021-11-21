@@ -5,6 +5,7 @@ using RT_CS.sceneObjects;
 using RT_CS.Cameras;
 using RT_CS.utility;
 using RT_CS.shapes;
+using RT_CS.utility.IO;
 
 namespace RT_CS.utility
 {
@@ -25,7 +26,7 @@ namespace RT_CS.utility
             }
             return inter;
         }
-        public void Render ()
+        public Vector3[,] Render ()
         {
             int width = database.MyScene.Width;
             int height = database.MyScene.Height;
@@ -52,6 +53,7 @@ namespace RT_CS.utility
                     image[y, x] = pxcolour;
                 }
             }
+            return image;
         }
     }
 }
