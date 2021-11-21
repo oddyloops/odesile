@@ -7,7 +7,7 @@ namespace RT_CS.Cameras
 {
     public class OrthographicCamera : Camera
     {
-        public override Ray Project(float px, float py)
+        public override Ray Project(int px, int py)
         {
             Ray myRay;
             Vector3 dir = ComputePixel(px, py);
@@ -15,7 +15,7 @@ namespace RT_CS.Cameras
             myRay.direct = viewDirection;
             return myRay;
         }
-        public OrthographicCamera (float fl, float fp, Vector3 up, Vector3 po, Vector3 ta, float fi, float scw, float sch) :
+        public OrthographicCamera (float fl, float fp, Vector3 up, Vector3 po, Vector3 ta, float fi, int scw, int sch) :
             base (fl, fp, up, po, ta, fi, scw, sch)
         {
 
