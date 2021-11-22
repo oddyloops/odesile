@@ -1,7 +1,7 @@
 #include "operators.h"
 using namespace utility;
 
-vector3 operator / (vector3 const &myVector, float myFloat)
+vector3 utility::operator / (vector3 const &myVector, float myFloat)
 {
 	vector3 vecs;
 	vecs.x = myVector.x / myFloat;
@@ -11,7 +11,7 @@ vector3 operator / (vector3 const &myVector, float myFloat)
 }
 
 
-vector3 operator - (vector3 const& v1, vector3 const& v2)
+vector3 utility::operator - (vector3 const& v1, vector3 const& v2)
 {
 	vector3 vec;
 	vec.x = v1.x - v2.x;
@@ -20,7 +20,7 @@ vector3 operator - (vector3 const& v1, vector3 const& v2)
 	return vec;
 }
 
-vector3 operator + (vector3 const& v1, vector3 const& v2)
+vector3 utility::operator + (vector3 const& v1, vector3 const& v2)
 {
 	vector3 vec;
 	vec.x = v1.x + v2.x;
@@ -29,7 +29,7 @@ vector3 operator + (vector3 const& v1, vector3 const& v2)
 	return vec;
 }
 
-vector3 operator * (vector3 const& v, float f)
+vector3 utility::operator * (vector3 const& v, float f)
 {
 	vector3 vec;
 	vec.x = f * v.x;
@@ -38,7 +38,7 @@ vector3 operator * (vector3 const& v, float f)
 	return vec;
 }
 
-vector3 operator * (float f, vector3 const& v)
+vector3 utility::operator * (float f, vector3 const& v)
 {
 	vector3 vec;
 	vec.x = f * v.x;
@@ -47,7 +47,7 @@ vector3 operator * (float f, vector3 const& v)
 	return vec;
 }
 
-vector3 operator * (vector3 const& v1, vector3 const& v2)
+vector3 utility::operator * (vector3 const& v1, vector3 const& v2)
 {
 	vector3 vec;
 	vec.x = v1.y * v2.z - v1.z * v2.y;
@@ -55,3 +55,5 @@ vector3 operator * (vector3 const& v1, vector3 const& v2)
 	vec.z = v1.x * v2.y - v1.y * v2.x;
 	return vec;
 }
+
+

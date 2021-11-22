@@ -13,7 +13,7 @@ namespace utilities
 	private:
 		scene_database& db;
 		
-		intersection_record& run_intersection(camera const& cam,vector<shape&> const& shapes, int pX, int pY);
+		intersection_record& run_intersection(camera const& cam,vector<shape*> const& shapes, int pX, int pY);
 
 	public:
 		renderer(scene_database& db);

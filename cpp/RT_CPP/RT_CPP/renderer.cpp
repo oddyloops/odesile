@@ -17,7 +17,7 @@ void renderer::render()
 	int width = db.get_scene().get_width();
 	int height = db.get_scene().get_height();
 	camera& cam = db.get_camera();
-	vector<shape&> shapes = db.get_shapes();
+	vector<shape*> shapes = db.get_shapes();
 	vector3** finalImages = new vector3*[height];
 	for (int y = 0; y < height; y++)
 	{
@@ -42,13 +42,13 @@ void renderer::render()
 }
 
 
-intersection_record& renderer::run_intersection(camera const& cam, vector<shape&> const& shapes, int pX, int pY)
+intersection_record& renderer::run_intersection(camera const& cam, vector<shape*> const& shapes, int pX, int pY)
 {
 	intersection_record rec;
 	ray r = cam.project(pX, pY);
-	for (shape& s : shapes)
+	for (shape* s : shapes)
 	{
-		s.intersect(r, rec);
+		s->intersect(r, rec);
 	}
 	return rec;
 

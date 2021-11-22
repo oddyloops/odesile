@@ -11,7 +11,7 @@ float vector3::magnitude_sq()
 
 float vector3 ::magnitude () 
 {
-	return sqrtf(magnitude());
+	return sqrtf(magnitude_sq());
 }
 
 vector3 vector3::normalize()

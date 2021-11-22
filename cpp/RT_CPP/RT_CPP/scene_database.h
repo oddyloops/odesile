@@ -13,21 +13,25 @@ namespace scene_objects
 	class scene_database
 	{
 	private:
-		scene& scn;
-		camera& cam;
-		vector<shape&>& shapes;
+		scene* scn;
+		camera* cam;
+		vector<shape*>* shapes;
 	public:
+
+		~scene_database();
+
 		scene& get_scene();
 
 		camera& get_camera();
 
-		vector<shape&>& get_shapes();
+		vector<shape*>& get_shapes();
 
-		void set_scene(scene& sc);
+		void set_scene(scene* sc);
 
-		void set_camera(camera& c);
+		void set_camera(camera* c);
 		
-		void set_shapes(vector<shape&>& shps);
+		void set_shapes(vector<shape*>* shps);
+
 
 	};
 }

@@ -2,32 +2,44 @@
 
 using namespace scene_objects;
 
+
 scene& scene_database::get_scene()
 {
-	return scn;
+	return *scn;
 }
 
 camera& scene_database::get_camera()
 {
-	return cam;
+	return *cam;
 }
 
-vector<shape&>& scene_database::get_shapes()
+vector<shape*>& scene_database::get_shapes()
 {
-	return shapes;
+	return *shapes;
 }
 
-void scene_database::set_scene(scene& sc)
+void scene_database::set_scene(scene* sc)
 {
 	scn = sc;
 }
 
-void scene_database::set_camera(camera& c)
+void scene_database::set_camera(camera* c)
 {
 	cam = c;
 }
 
-void scene_database::set_shapes(vector<shape&>& shps)
+void scene_database::set_shapes(vector<shape*>* shps)
 {
 	shapes = shps;
+}
+
+scene_database::~scene_database()
+{
+	delete scn;
+	delete cam;
+	for (int i = 0; i < shapes->size(); i++)
+	{
+		delete (*shapes)[i];
+	}
+	delete shapes;
 }
