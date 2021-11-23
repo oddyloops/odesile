@@ -54,10 +54,10 @@ namespace RT_CS.Cameras
             Vector3 bottom = centre - (halfHeight * cameraUp);
             c1 = top + (halfWidth * sideDirection);
             c2 = top - (halfWidth * sideDirection);
-            c3 = (halfWidth * sideDirection) - top;
-            c4 = bottom - (halfWidth * sideDirection);
+            c3 = bottom - (halfWidth * sideDirection);
+            c4 = bottom + (halfWidth * sideDirection);
             frameHeight = halfHeight * 2;
-            frameWidth = halfHeight * 2;
+            frameWidth = halfWidth * 2;
             pixelHeight = frameHeight / sch;
             pixelWidth = frameWidth / scw;
         }

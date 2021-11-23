@@ -3,7 +3,7 @@
 #include "ray.h"
 
 using namespace cameras;
-using namespace utilities;
+using namespace utility;
 
 
 

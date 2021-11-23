@@ -21,7 +21,6 @@ namespace RT_CS.shapes
 
         public override void Intersect(Ray r, IntersectionRecord record)
         {
-            IntersectionRecord intersect = new IntersectionRecord();
 
             Vector3 oc = r.posit - centre;
             float uOc = Vector3.Dot(r.direct, oc);
@@ -43,12 +42,12 @@ namespace RT_CS.shapes
             }
 
            
-            if( dist > 0 && dist < intersect.Distance)
+            if( dist > 0 && dist < record.Distance)
             {
-                intersect.Distance =dist;
-                intersect.Hit = true;
-                intersect.Point = r.posit + dist * r.direct;
-                intersect.ShapeId = sid;
+                record.Distance =dist;
+                record.Hit = true;
+                record.Point = r.posit + dist * r.direct;
+                record.ShapeId = sid;
             }
             
         }

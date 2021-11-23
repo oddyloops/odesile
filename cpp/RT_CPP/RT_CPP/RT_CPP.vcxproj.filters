@@ -90,6 +90,9 @@
     <ClInclude Include="database_loader.h">
       <Filter>Header Files\utility\io</Filter>
     </ClInclude>
+    <ClInclude Include="image_generator.h">
+      <Filter>Header Files\utility\io</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -139,6 +142,9 @@
     </ClCompile>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="image_generator.cpp">
+      <Filter>Source Files\utility\io</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

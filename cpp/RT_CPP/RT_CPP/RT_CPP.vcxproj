@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <DisableSpecificWarnings>4996</DisableSpecificWarnings>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -141,6 +142,7 @@
   <ItemGroup>
     <ClInclude Include="camera.h" />
     <ClInclude Include="database_loader.h" />
+    <ClInclude Include="image_generator.h" />
     <ClInclude Include="intersection_record.h" />
     <ClInclude Include="operators.h" />
     <ClInclude Include="orthographic.h" />
@@ -157,6 +159,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="database_loader.cpp" />
+    <ClCompile Include="image_generator.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="rectangle.cpp" />

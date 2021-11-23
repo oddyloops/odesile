@@ -1,5 +1,5 @@
 #include "image_generator.h"
-#include "io/EasyBMP.h"
+#include "io/EasyBMP.cpp"
 
 using namespace utility::io;
 

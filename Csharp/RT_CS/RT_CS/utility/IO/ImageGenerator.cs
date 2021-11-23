@@ -15,7 +15,7 @@ namespace RT_CS.utility.IO
             {
                 for (int x = 0; x < width; x++)
                 {
-                    image.SetPixel(x, y, VecColor(pixels[x, y]));
+                    image.SetPixel(x, y, VecColor(pixels[y, x]));
                 }
             }
             image.Save(output, ImageFormat.Bmp);
