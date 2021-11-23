@@ -12,7 +12,7 @@ renderer::renderer(scene_database& db) : db(db)
 
 }
 
-void renderer::render()
+vector3** renderer::render()
 {
 	int width = db.get_scene().get_width();
 	int height = db.get_scene().get_height();
@@ -24,9 +24,9 @@ void renderer::render()
 		finalImages[y] = new vector3[width];
 		for (int x = 0; x < width; x++)
 		{
-			intersection_record& rec = run_intersection(cam, shapes, x, y);
+			intersection_record* rec = run_intersection(cam, shapes, x, y);
 			vector3 pxColor;
-			if (rec.hit)
+			if (rec->hit)
 			{
 				pxColor.x = 1;
 				pxColor.y = 1;
@@ -37,18 +37,21 @@ void renderer::render()
 				pxColor = db.get_scene().get_background();
 			}
 			finalImages[y][x] = pxColor;
+			delete rec;
 		}
+
 	}
+	return finalImages;
 }
 
 
-intersection_record& renderer::run_intersection(camera const& cam, vector<shape*> const& shapes, int pX, int pY)
+intersection_record* renderer::run_intersection(camera const& cam, vector<shape*> const& shapes, int pX, int pY)
 {
-	intersection_record rec;
+	intersection_record* rec = new intersection_record;
 	ray r = cam.project(pX, pY);
 	for (shape* s : shapes)
 	{
-		s->intersect(r, rec);
+		s->intersect(r, *rec);
 	}
 	return rec;
 
