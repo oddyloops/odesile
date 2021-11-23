@@ -23,8 +23,8 @@ camera::camera(float farPlane, float focalLength, float fovRadians, vector3 upDi
 	vector3 q = center - halfHeight * cameraUp;
 	c1 = p + halfWidth * sideDirection;
 	c2 = p - halfWidth * sideDirection;
-	c3 = q + halfWidth * sideDirection;
-	c4 = q - halfWidth * sideDirection;
+	c3 = q - halfWidth * sideDirection;
+	c4 = q + halfWidth * sideDirection;
 	
 	frameWidth = 2 * halfWidth;
 	frameHeight = 2 * halfHeight;

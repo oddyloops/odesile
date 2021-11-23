@@ -9,6 +9,6 @@ namespace utility
 		vector3 point;
 		int shape_id;
 		float distance = FLT_MAX;
-		bool hit;
+		bool hit = false;
 	};
 }
