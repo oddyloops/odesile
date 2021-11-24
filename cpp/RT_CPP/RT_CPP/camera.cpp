@@ -13,8 +13,8 @@ camera::camera(float farPlane, float focalLength, float fovRadians, vector3 upDi
 	viewDirection = viewDirection.normalize();
 	
 	vector3 center = position + focalLength * viewDirection;
-	sideDirection = upDirection * viewDirection;
-	cameraUp = viewDirection * sideDirection;
+	sideDirection = (upDirection * viewDirection).normalize();
+	cameraUp = (viewDirection * sideDirection).normalize();
 
 	float halfHeight = focalLength * tanf(0.5 * fovRadians);
 	float aspectRatio = (float)sceneWidth / sceneHeight;
