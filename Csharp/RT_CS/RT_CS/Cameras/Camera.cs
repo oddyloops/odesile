@@ -45,8 +45,8 @@ namespace RT_CS.Cameras
             viewDirection = target - position;
             viewDirection = viewDirection.Normalize();
             Vector3 centre = position + (focalLength * viewDirection);
-            sideDirection = upDirection * viewDirection;
-            cameraUp = viewDirection * sideDirection;
+            sideDirection = (upDirection * viewDirection).Normalize();
+            cameraUp = (viewDirection * sideDirection).Normalize();
             float halfHeight = focalLength * (float)Math.Tan(0.5 * fieldOfView);
             float aspectRatio = (float)scw / sch;
             float halfWidth = halfHeight * aspectRatio;
