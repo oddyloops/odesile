@@ -119,3 +119,41 @@ sphere* database_loader::load_sphere(json const& j)
 		j["radius"]);
 	return sph;
 }
+
+
+vector<rectangle*>* database_loader::load_rectangles(json const& j)
+{
+	vector<rectangle*>* rectangles = new vector<rectangle*>;
+	for (json recJson : j)
+	{
+		rectangles->push_back(load_rectangle(recJson));
+	}
+	return rectangles;
+}
+
+
+
+rectangle* database_loader::load_rectangle(json const& j)
+{
+	rectangle* rec = new rectangle(j["id"],j["vertexA"], j["vertexB"],
+		j["vertexC"], j["vertexD"]);
+	return rec;
+}
+
+
+vector<triangle*>* database_loader::load_triangles(json const& j)
+{
+	vector<triangle*>* triangles = new vector<triangle*>;
+	for (json triJson : j)
+	{
+		triangles->push_back(load_triangle(triJson));
+	}
+	return triangles;
+}
+
+triangle* database_loader::load_triangle(json const& j)
+{
+	triangle* tri = new triangle(j["id"], j["vertexA"], j["vertexB"],
+		j["vertexC"]);
+	return tri;
+}

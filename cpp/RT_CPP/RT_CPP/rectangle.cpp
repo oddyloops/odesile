@@ -10,7 +10,7 @@ rectangle::rectangle(int id, vector3 a, vector3 b, vector3 c, vector3 d)
 }
 
 
-void rectangle::intersect(ray r, intersection_record& rec)
+void rectangle::intersect(ray r, intersection_record& rec) const
 {
 	intersection_record* ray_rec = ray_plane_intersection(r);
 	if (ray_rec->hit)

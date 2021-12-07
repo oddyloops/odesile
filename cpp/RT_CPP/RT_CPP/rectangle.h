@@ -15,7 +15,7 @@ namespace shapes
 	public:
 		rectangle(int id, vector3 a, vector3 b, vector3 c, vector3 d);
 
-		void intersect(ray r, intersection_record& rec);
+		void intersect(ray r, intersection_record& rec) const;
 
 	};
 }
