@@ -1,0 +1,40 @@
+{
+  "Scene": {
+    "height": 260,
+    "width": 320,
+    "background": "0,1,0"
+  },
+  "Camera": {
+    "isOrthographic": false,
+    "focalLength": 2,
+    "farPlane": 20,
+    "upDirection": "0,1,0",
+    "position": "-4,0,0",
+    "target": "2,0,0",
+    "fieldOfView": 0.785
+  },
+  "Shapes": {
+    "Spheres": [],
+    "Triangles": [
+      {
+        "Triangle": {
+          "id": 1,
+          "vertexA": "4,-1.5,-1.5",
+          "vertexB": "4,1.5,0",
+          "vertexC": "4,-1.5,1.5"
+        }
+      }
+    ],
+    "Rectangles": [
+      {
+        "Rectangle": {
+          "id": 2,
+          "vertexA": "4,2,-2.5",
+          "vertexB": "4,2,-1.5",
+          "vertexC": "4,1,-1.5",
+          "vertexD": "4,1,-2.5"
+        }
+      }
+    ]
+  }
+}
