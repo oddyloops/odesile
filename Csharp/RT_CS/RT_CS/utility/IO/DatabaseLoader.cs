@@ -28,6 +28,10 @@ namespace RT_CS.utility.IO
             JObject shapes = (JObject)dbDict["Shapes"];
             JArray shapesArr = (JArray)shapes["Spheres"];
             LoadSpheres(shapesArr, db);
+            shapesArr = (JArray)shapes["Triangles"];
+            LoadTriangles(shapesArr, db);
+            shapesArr = (JArray)shapes["Rectangles"];
+            LoadRectangles(shapesArr, db); 
             return db;
         }
 
@@ -92,12 +96,47 @@ namespace RT_CS.utility.IO
             }
         }
 
+        private static void LoadRectangles(JArray rectangles,SceneDatabase db)
+        {
+            foreach(var rectangle in rectangles)
+            {
+                LoadRectangle((JObject)rectangle, db);
+            }
+        }
+
+
+        private static void LoadTriangles(JArray triangles, SceneDatabase db)
+        {
+            foreach(var triangle in triangles)
+            {
+                LoadTriangle((JObject)triangle, db);
+            }
+        }
+
         private static void LoadSphere(JObject sphereDict, SceneDatabase db)
         {
             Sphere sphere = new Sphere((int)sphereDict["id"],
                 ParseVector3((string)sphereDict["center"]),
                 (float)sphereDict["radius"]);
             db.MyShapes.Add(sphere);
+        }
+
+        private static void LoadRectangle(JObject rectDict,SceneDatabase db)
+        {
+            Rectangle rectangle = new Rectangle((int)rectDict["id"],
+                ParseVector3((string)rectDict["vertexA"]),
+                ParseVector3((string)rectDict["vertexB"]),
+                ParseVector3((string)rectDict["vertexC"]),
+                ParseVector3((string)rectDict["vertexD"]));
+            db.MyShapes.Add(rectangle);
+        }
+        private static void LoadTriangle(JObject triangleDict,SceneDatabase db)
+        {
+            Triangle triangle = new Triangle((int)triangleDict["id"],
+                ParseVector3((string)triangleDict["vertexA"]),
+                ParseVector3((string)triangleDict["vertexB"]),
+                ParseVector3((string)triangleDict["vertexC"]));
+            db.MyShapes.Add(triangle);
         }
     }
 }

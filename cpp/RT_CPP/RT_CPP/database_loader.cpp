@@ -36,7 +36,16 @@ scene_database* database_loader::load(string file)
 	temp = j["Shapes"]["Spheres"];
 	vector<sphere*>* spheres = load_spheres(temp);
 	copy(spheres->begin(), spheres->end(), back_inserter(*shapes));
+	temp = j["Shapes"]["Triangles"];
+	vector<triangle*>* triangles = load_triangles(temp);
+	copy(triangles->begin(), triangles->end(), back_inserter(*shapes));
+	temp = j["Shapes"]["Rectangles"];
+	vector<rectangle*>* rectangles = load_rectangles(temp);
+	copy(rectangles->begin(), rectangles->end(), back_inserter(*shapes));
+
 	delete spheres;
+	delete triangles;
+	delete rectangles;
 
 	scene_database* db = new scene_database();
 	db->set_camera(cam);
