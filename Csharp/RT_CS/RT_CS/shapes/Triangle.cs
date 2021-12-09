@@ -10,19 +10,16 @@ namespace RT_CS.shapes
     public class Triangle : Shape
     {
         protected Vector3 vertexA, vertexB, vertexC, normal;
-        protected float D;
+        protected Vector3 D;
         private Vector3 ab,ac,bc;
-        private float area;
-        private static float TriangleArea (Vector3 ab, Vector3 ac, Vector3 vA, Vector3 vB)
+        protected float area;
+
+        protected const float BIGGER_EPSILON = 0.000001f;
+
+
+        protected static float SimplerTriangleArea(Vector3 ab,Vector3 ac)
         {
-            Vector3 normAb = ab.Normalize();
-            Vector3 normAc = ac.Normalize();
-            float cosTheta = Vector3.Dot(normAb, normAc);
-            float hypotenus = ab.Magnitude();
-            float adjacent = hypotenus * cosTheta;
-            Vector3 adjend = vA + (adjacent * normAc);
-            float height = (vB - adjend).Magnitude();
-            return 0.5f *height * ac.Magnitude();
+            return (ab * ac).Magnitude() * 0.5f;
         }
 
         public Triangle(int id, Vector3 v1, Vector3 v2, Vector3 v3)  :base(id)
@@ -34,8 +31,8 @@ namespace RT_CS.shapes
             ac = vertexC - vertexA;
             bc = vertexC - vertexA;
             normal = ((v3 - v1) * (v2 - v1)).Normalize();
-            D = v1.Magnitude();
-            area = TriangleArea(ab, ac, vertexA, vertexB);
+            D = v1;
+            area = SimplerTriangleArea(ab,ac);
         }
         public IntersectionRecord RayPlaneIntersection(Ray r)
         {
@@ -47,7 +44,7 @@ namespace RT_CS.shapes
             }
             else
             {
-                float d = (-(Vector3.Dot(r.posit, normal) + D))/nordir;
+                float d = Vector3.Dot((D - r.posit),normal)/nordir;
                 if (d > 0)
                 {
                     inter.Distance = d;
@@ -63,12 +60,13 @@ namespace RT_CS.shapes
             IntersectionRecord inter = RayPlaneIntersection(r);
             if (inter.Hit)
             {
-                float areaAlpha = TriangleArea(inter.Point - vertexB, vertexA - vertexB, vertexB, inter.Point)/area;
-                float areaBeta = TriangleArea(inter.Point - vertexC, vertexB - vertexC, vertexC, inter.Point)/area;
-                float areaGamma = TriangleArea(inter.Point - vertexA, vertexC - vertexA, vertexA, inter.Point)/area;
+                float areaAlpha = SimplerTriangleArea(vertexA - vertexB, vertexA - inter.Point)/area;
+                float areaBeta = SimplerTriangleArea(inter.Point - vertexB, inter.Point - vertexC)/area;
+                float areaGamma = SimplerTriangleArea(vertexA - inter.Point, vertexA - vertexC)/area;
                 float sum = areaAlpha + areaBeta + areaGamma;
 
-                if(Math.Abs(1-sum) < float.Epsilon)
+
+                if(Math.Abs(1-sum) < BIGGER_EPSILON)
                 {
                     if (inter.Distance < intersection.Distance)
                     {

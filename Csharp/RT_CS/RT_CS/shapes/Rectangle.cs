@@ -9,33 +9,41 @@ namespace RT_CS.shapes
 
     public class Rectangle : Triangle
     {
-        private Vector3 vertexD,vcvb,vdvc;
+        private Vector3 vertexD,vdva,vdvc;
 
         public Rectangle(int id, Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4) : base(id, v1, v2, v3)
         {
             vertexD = v4;
-            vcvb = (v3 - v2).Normalize();
-            vdvc = (v4 - v3).Normalize();
+          
+            vdva = v4 - v1;
+            vdvc = v4 - v3;
+            float vdvaMag = vdva.Magnitude();
+            float vdvcMag = vdvc.Magnitude();
+            area = vdvaMag * vdvcMag;
+            vdva /= vdvaMag;
+            vdvc/=vdvcMag;
         }
 
         public override void Intersect(Ray r, IntersectionRecord intersection)
         {
             IntersectionRecord inter = RayPlaneIntersection(r);
-            Vector3 pb = (inter.Point - vertexB).Normalize();
-            float cos = Vector3.Dot(pb, vcvb);
-            float sin = (pb * vcvb).Magnitude();
-            if (cos >= 0 && sin >= 0)
+            if (inter.Hit)
             {
-                Vector3 pd = (inter.Point - vertexD).Normalize();
-                cos = Vector3.Dot(pd, vdvc);
-                sin = (pd * vdvc).Magnitude();
+                float alpha = SimplerTriangleArea(vertexA - inter.Point,  vertexA - vertexD)/area;
+                float beta = SimplerTriangleArea(inter.Point - vertexB,  vertexB -vertexA) /area;
+                float gamma = SimplerTriangleArea( vertexC - inter.Point, vertexC - vertexB)/area;
+                float phi = SimplerTriangleArea(vertexD - inter.Point, vertexD - vertexC)/area;
+                float sum = alpha + beta + gamma + phi;
 
-                if (cos >= 0 && sin >= 0 && inter.Distance < intersection.Distance)
+                if (Math.Abs(1 - sum) < BIGGER_EPSILON)
                 {
-                    intersection.Distance = inter.Distance;
-                    intersection.Hit = true;
-                    intersection.Point = inter.Point;
-                    intersection.ShapeId = sid;
+                    if (inter.Distance < intersection.Distance)
+                    {
+                        intersection.Distance = inter.Distance;
+                        intersection.Hit = true;
+                        intersection.Point = inter.Point;
+                        intersection.ShapeId = sid;
+                    }
                 }
             }
         }

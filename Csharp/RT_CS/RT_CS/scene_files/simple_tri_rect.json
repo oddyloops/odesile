@@ -1,8 +1,8 @@
 {
   "Scene": {
-    "height": 260,
-    "width": 320,
-    "background": "0,1,0"
+    "height": 1080,
+    "width": 1920,
+    "background": "0,0,0"
   },
   "Camera": {
     "isOrthographic": false,
@@ -14,26 +14,26 @@
     "fieldOfView": 0.785
   },
   "Shapes": {
-    "Spheres": [],
+    "Spheres": [
+    ],
     "Triangles": [
+      
+
       {
-        "Triangle": {
-          "id": 1,
-          "vertexA": "4,-1.5,-1.5",
-          "vertexB": "4,1.5,0",
-          "vertexC": "4,-1.5,1.5"
-        }
+        "id": 4,
+        "vertexA": "5,-1.5,1.5",
+        "vertexB": "5,1.5,3",
+        "vertexC": "5,-1.5,4.5"
       }
+
     ],
     "Rectangles": [
       {
-        "Rectangle": {
-          "id": 2,
-          "vertexA": "4,2,-2.5",
-          "vertexB": "4,2,-1.5",
-          "vertexC": "4,1,-1.5",
-          "vertexD": "4,1,-2.5"
-        }
+        "id": 2,
+        "vertexA": "4,2,-2.5",
+        "vertexB": "4,2,0",
+        "vertexC": "5,1,0",
+        "vertexD": "5,1,-2.5"
       }
     ]
   }

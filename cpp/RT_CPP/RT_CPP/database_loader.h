@@ -1,12 +1,14 @@
 #pragma once
 #include <string>
-#include "io/json.hpp"
 #include "scene_database.h"
 #include "sphere.h"
 #include "rectangle.h"
 #include "triangle.h"
+#include "io/json.hpp"
+
 
 using namespace std;
+using namespace utility;
 using namespace scene_objects;
 
 using namespace nlohmann;

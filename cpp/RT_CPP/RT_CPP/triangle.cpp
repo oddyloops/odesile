@@ -11,20 +11,13 @@ vertexA(a), vertexB(b), vertexC(c)
 	ac = vertexC - vertexA;
 	bc = vertexC - vertexB;
 	normal = (ac * ab).normalize();
-	area = triangle_area(ab, ac, vertexA, vertexB);
-	d = vertexA.magnitude();
+	area = simpler_triangle_area(ab, ac);
+	d = vertexA;
 }
 
-float triangle::triangle_area(vector3 ab,  vector3 ac,vector3 vA, vector3 vB)
+float triangle::simpler_triangle_area(vector3 ab, vector3 ac)
 {
-	vector3 normAb = ab.normalize();
-	vector3 normAc = ac.normalize();
-	float cosTheta = vector3::dot(normAb, normAc);
-	float hypothenuse = ab.magnitude();
-	float adj = hypothenuse * cosTheta;
-	vector3 adjEnd = vA + adj * normAc;
-	float height = (vB - adjEnd).magnitude();
-	return 0.5f * ac.magnitude() * height;
+	return 0.5f * (ab * ac).magnitude();
 }
 
 intersection_record* triangle::ray_plane_intersection(ray r) const
@@ -36,7 +29,7 @@ intersection_record* triangle::ray_plane_intersection(ray r) const
 	{
 		return rec; // parallel to the plane, no intersection
 	}
-	float dist = (-(vector3::dot(normal, r.position) + d)) / dot;
+	float dist = (vector3::dot(normal,d - r.position)) / dot;
 	
 	if (dist > 0)
 	{
@@ -55,12 +48,12 @@ void triangle::intersect(ray r, intersection_record& rec) const
 	if (ray_int->hit)
 	{
 		//computing barymetric area ratios
-		float areaAlpha = triangle_area(ray_int->point - vertexB, vertexA - vertexB, vertexB, ray_int->point) /area;
-		float areaBeta = triangle_area(ray_int->point - vertexC, vertexB - vertexC, vertexC, ray_int->point) / area;
-		float areaGamma = triangle_area(ray_int->point - vertexA, ac, vertexA, ray_int->point) /area;
+		float areaAlpha = simpler_triangle_area(vertexA - vertexB, vertexA - ray_int->point) /area;
+		float areaBeta = simpler_triangle_area(ray_int->point - vertexB, ray_int->point - vertexC) / area;
+		float areaGamma = simpler_triangle_area(vertexA - ray_int->point, vertexA - vertexC) /area;
 
 		float sum = areaAlpha + areaBeta + areaGamma;
-		if (fabsf(1 - sum) < FLT_EPSILON) 
+		if (fabsf(1 - sum) < BIGGER_EPSILON)
 		{
 			if (ray_int->distance < rec.distance)
 			{
@@ -71,4 +64,5 @@ void triangle::intersect(ray r, intersection_record& rec) const
 			}
 		}
 	}
+	delete ray_int;
 }

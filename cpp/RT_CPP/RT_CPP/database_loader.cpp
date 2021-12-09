@@ -144,8 +144,8 @@ vector<rectangle*>* database_loader::load_rectangles(json const& j)
 
 rectangle* database_loader::load_rectangle(json const& j)
 {
-	rectangle* rec = new rectangle(j["id"],j["vertexA"], j["vertexB"],
-		j["vertexC"], j["vertexD"]);
+	rectangle* rec = new rectangle(j["id"], parse_vector3( j["vertexA"]),parse_vector3(j["vertexB"]),
+		parse_vector3(j["vertexC"]), parse_vector3(j["vertexD"]));
 	return rec;
 }
 
@@ -162,7 +162,7 @@ vector<triangle*>* database_loader::load_triangles(json const& j)
 
 triangle* database_loader::load_triangle(json const& j)
 {
-	triangle* tri = new triangle(j["id"], j["vertexA"], j["vertexB"],
-		j["vertexC"]);
+	triangle* tri = new triangle(j["id"], parse_vector3(j["vertexA"]), parse_vector3(j["vertexB"]),
+		parse_vector3(j["vertexC"]));
 	return tri;
 }
