@@ -20,6 +20,7 @@ namespace RT_CS.shapes
             float vdvaMag = vdva.Magnitude();
             float vdvcMag = vdvc.Magnitude();
             area = vdvaMag * vdvcMag;
+            normal = ((v3 - v4) * (v1 - v4)).Normalize();
             vdva /= vdvaMag;
             vdvc/=vdvcMag;
         }
@@ -30,11 +31,11 @@ namespace RT_CS.shapes
             if (inter.Hit)
             {
                 float alpha = SimplerTriangleArea(vertexA - inter.Point,  vertexA - vertexD)/area;
-                float beta = SimplerTriangleArea(inter.Point - vertexB,  vertexB -vertexA) /area;
+                float beta = SimplerTriangleArea(vertexB - inter.Point,  vertexB - vertexA) /area;
                 float gamma = SimplerTriangleArea( vertexC - inter.Point, vertexC - vertexB)/area;
                 float phi = SimplerTriangleArea(vertexD - inter.Point, vertexD - vertexC)/area;
                 float sum = alpha + beta + gamma + phi;
-
+               
                 if (Math.Abs(1 - sum) < BIGGER_EPSILON)
                 {
                     if (inter.Distance < intersection.Distance)

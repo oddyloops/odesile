@@ -13,18 +13,18 @@ camera::camera(float farPlane, float focalLength, float fovRadians, vector3 upDi
 	viewDirection = viewDirection.normalize();
 	
 	vector3 center = position + focalLength * viewDirection;
-	sideDirection = (upDirection * viewDirection).normalize();
-	cameraUp = (viewDirection * sideDirection).normalize();
+	sideDirection = (viewDirection * upDirection).normalize();
+	cameraUp = (sideDirection * viewDirection).normalize();
 
 	float halfHeight = focalLength * tanf(0.5 * fovRadians);
 	float aspectRatio = (float)sceneWidth / sceneHeight;
 	float halfWidth = aspectRatio * halfHeight;
 	vector3 p = center + halfHeight * cameraUp;
 	vector3 q = center - halfHeight * cameraUp;
-	c1 = p + halfWidth * sideDirection;
-	c2 = p - halfWidth * sideDirection;
-	c3 = q - halfWidth * sideDirection;
-	c4 = q + halfWidth * sideDirection;
+	c1 = p - halfWidth * sideDirection;
+	c2 = p + halfWidth * sideDirection;
+	c3 = q + halfWidth * sideDirection;
+	c4 = q - halfWidth * sideDirection;
 	
 	frameWidth = 2 * halfWidth;
 	frameHeight = 2 * halfHeight;
@@ -36,6 +36,6 @@ camera::camera(float farPlane, float focalLength, float fovRadians, vector3 upDi
 
 vector3 camera::computePixelPosition(int pX, int pY) const
 {
-	vector3 hor = c1 - ((pX + 0.5) * pixelWidth * sideDirection);
+	vector3 hor = c1 + ((pX + 0.5) * pixelWidth * sideDirection);
 	return hor - ((pY + 0.5) * pixelHeight * upDirection);
 }

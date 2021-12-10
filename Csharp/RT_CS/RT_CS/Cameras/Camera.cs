@@ -28,7 +28,7 @@ namespace RT_CS.Cameras
         {
             float hor = (px + 0.5f) * pixelWidth;
             float ver = (py + 0.5f) * pixelHeight;
-            Vector3 position1 = c1 - sideDirection * hor;
+            Vector3 position1 = c1 + sideDirection * hor;
             Vector3 position2 = position1 - cameraUp * ver;
             return position2;
         }
@@ -45,17 +45,17 @@ namespace RT_CS.Cameras
             viewDirection = target - position;
             viewDirection = viewDirection.Normalize();
             Vector3 centre = position + (focalLength * viewDirection);
-            sideDirection = (upDirection * viewDirection).Normalize();
-            cameraUp = (viewDirection * sideDirection).Normalize();
+            sideDirection = (viewDirection * upDirection).Normalize();
+            cameraUp = (sideDirection * viewDirection).Normalize();
             float halfHeight = focalLength * (float)Math.Tan(0.5 * fieldOfView);
             float aspectRatio = (float)scw / sch;
             float halfWidth = halfHeight * aspectRatio;
             Vector3 top = centre + (halfHeight * cameraUp);
             Vector3 bottom = centre - (halfHeight * cameraUp);
-            c1 = top + (halfWidth * sideDirection);
-            c2 = top - (halfWidth * sideDirection);
-            c3 = bottom - (halfWidth * sideDirection);
-            c4 = bottom + (halfWidth * sideDirection);
+            c1 = top - (halfWidth * sideDirection);
+            c2 = top + (halfWidth * sideDirection);
+            c3 = bottom + (halfWidth * sideDirection);
+            c4 = bottom - (halfWidth * sideDirection);
             frameHeight = halfHeight * 2;
             frameWidth = halfWidth * 2;
             pixelHeight = frameHeight / sch;
