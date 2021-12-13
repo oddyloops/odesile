@@ -142,12 +142,18 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="camera.h" />
+    <ClInclude Include="color_material.h" />
     <ClInclude Include="database_loader.h" />
+    <ClInclude Include="directional_light.h" />
     <ClInclude Include="image_generator.h" />
     <ClInclude Include="intersection_record.h" />
+    <ClInclude Include="light.h" />
+    <ClInclude Include="material.h" />
+    <ClInclude Include="material_type.h" />
     <ClInclude Include="operators.h" />
     <ClInclude Include="orthographic.h" />
     <ClInclude Include="perspective.h" />
+    <ClInclude Include="point_light.h" />
     <ClInclude Include="ray.h" />
     <ClInclude Include="rectangle.h" />
     <ClInclude Include="renderer.h" />
@@ -155,13 +161,19 @@
     <ClInclude Include="scene_database.h" />
     <ClInclude Include="shape.h" />
     <ClInclude Include="sphere.h" />
+    <ClInclude Include="spot_light.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="vector3.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="color_material.cpp" />
     <ClCompile Include="database_loader.cpp" />
+    <ClCompile Include="directional_light.cpp" />
     <ClCompile Include="image_generator.cpp" />
+    <ClCompile Include="light.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="material.cpp" />
+    <ClCompile Include="point_light.cpp" />
     <ClCompile Include="ray.cpp" />
     <ClCompile Include="rectangle.cpp" />
     <ClCompile Include="renderer.cpp" />
@@ -174,6 +186,7 @@
     <ClCompile Include="operators.cpp" />
     <ClCompile Include="intersection_record.cpp" />
     <ClCompile Include="sphere.cpp" />
+    <ClCompile Include="spot_light.cpp" />
     <ClCompile Include="triangle.cpp" />
     <ClCompile Include="vector3.cpp" />
   </ItemGroup>

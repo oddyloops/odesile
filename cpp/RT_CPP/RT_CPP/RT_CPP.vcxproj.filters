@@ -43,6 +43,18 @@
     <Filter Include="Source Files\utility\io">
       <UniqueIdentifier>{71974623-11c5-43fa-9879-354bc97bc42e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\materials">
+      <UniqueIdentifier>{0099f41f-338f-40fe-906d-9bedcf3cfa5f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\materials">
+      <UniqueIdentifier>{7eb01477-cd40-4993-b9b0-7416978120e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lights">
+      <UniqueIdentifier>{be2e058d-bedf-410c-9820-03cca181e33e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\lights">
+      <UniqueIdentifier>{3248254b-3a77-4e36-8e01-16c44526c52a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="scene.h">
@@ -92,6 +104,27 @@
     </ClInclude>
     <ClInclude Include="image_generator.h">
       <Filter>Header Files\utility\io</Filter>
+    </ClInclude>
+    <ClInclude Include="material.h">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="color_material.h">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
+    <ClInclude Include="light.h">
+      <Filter>Header Files\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="directional_light.h">
+      <Filter>Header Files\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="point_light.h">
+      <Filter>Header Files\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="spot_light.h">
+      <Filter>Header Files\lights</Filter>
+    </ClInclude>
+    <ClInclude Include="material_type.h">
+      <Filter>Header Files\materials</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -145,6 +178,24 @@
     </ClCompile>
     <ClCompile Include="image_generator.cpp">
       <Filter>Source Files\utility\io</Filter>
+    </ClCompile>
+    <ClCompile Include="material.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="color_material.cpp">
+      <Filter>Source Files\materials</Filter>
+    </ClCompile>
+    <ClCompile Include="light.cpp">
+      <Filter>Source Files\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="directional_light.cpp">
+      <Filter>Source Files\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="point_light.cpp">
+      <Filter>Source Files\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="spot_light.cpp">
+      <Filter>Source Files\lights</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
