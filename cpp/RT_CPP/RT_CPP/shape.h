@@ -12,7 +12,7 @@ namespace shapes
 		int id;
 
 	public:
-		shape(int ids);
+		shape(int id);
 
 		virtual void intersect(ray r, intersection_record& rec) const = 0;
 	};
