@@ -149,7 +149,10 @@
     <ClInclude Include="intersection_record.h" />
     <ClInclude Include="light.h" />
     <ClInclude Include="material.h" />
+<<<<<<< Updated upstream
     <ClInclude Include="material_type.h" />
+=======
+>>>>>>> Stashed changes
     <ClInclude Include="operators.h" />
     <ClInclude Include="orthographic.h" />
     <ClInclude Include="perspective.h" />

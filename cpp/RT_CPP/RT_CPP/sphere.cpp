@@ -5,10 +5,10 @@
 #include <cfloat>
 using namespace shapes;
 
-sphere ::sphere (int id, vector3 c, float r) : shape(id)
+sphere ::sphere (int id, vector3 c, float r) : shape(id),
+center(c), radius(r)
 {
-	center = c;
-	radius = r;
+
 }
 
 void sphere:: intersect(ray r, intersection_record& rec)  const
