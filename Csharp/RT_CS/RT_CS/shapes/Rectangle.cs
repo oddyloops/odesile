@@ -11,7 +11,7 @@ namespace RT_CS.shapes
     {
         private Vector3 vertexD,vdva,vdvc;
 
-        public Rectangle(int id, Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4) : base(id, v1, v2, v3)
+        public Rectangle(int id, int mid, Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4) : base(id, mid, v1, v2, v3)
         {
             vertexD = v4;
           

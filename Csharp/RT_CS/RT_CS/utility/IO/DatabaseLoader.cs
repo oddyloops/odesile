@@ -115,7 +115,7 @@ namespace RT_CS.utility.IO
 
         private static void LoadSphere(JObject sphereDict, SceneDatabase db)
         {
-            Sphere sphere = new Sphere((int)sphereDict["id"],
+            Sphere sphere = new Sphere((int)sphereDict["id"], (int)sphereDict["materialId"],
                 ParseVector3((string)sphereDict["center"]),
                 (float)sphereDict["radius"]);
             db.MyShapes.Add(sphere);
@@ -123,7 +123,7 @@ namespace RT_CS.utility.IO
 
         private static void LoadRectangle(JObject rectDict,SceneDatabase db)
         {
-            Rectangle rectangle = new Rectangle((int)rectDict["id"],
+            Rectangle rectangle = new Rectangle((int)rectDict["id"], (int)rectDict["materialId"],
                 ParseVector3((string)rectDict["vertexA"]),
                 ParseVector3((string)rectDict["vertexB"]),
                 ParseVector3((string)rectDict["vertexC"]),
@@ -132,7 +132,7 @@ namespace RT_CS.utility.IO
         }
         private static void LoadTriangle(JObject triangleDict,SceneDatabase db)
         {
-            Triangle triangle = new Triangle((int)triangleDict["id"],
+            Triangle triangle = new Triangle((int)triangleDict["id"],(int)triangleDict["materialId"],
                 ParseVector3((string)triangleDict["vertexA"]),
                 ParseVector3((string)triangleDict["vertexB"]),
                 ParseVector3((string)triangleDict["vertexC"]));

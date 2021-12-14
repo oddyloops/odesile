@@ -10,6 +10,7 @@ namespace RT_CS.sceneObjects
         public int Width { get; set; } 
         public int Height { get; set; }
         public Vector3 Background { get; set; }
+        public Vector3 AmbientLight { get; set; }
         
     }
 

@@ -6,6 +6,7 @@ using RT_CS.Cameras;
 using RT_CS.utility;
 using RT_CS.shapes;
 using RT_CS.utility.IO;
+using RT_CS.Materials;
 
 namespace RT_CS.utility
 {
@@ -42,9 +43,9 @@ namespace RT_CS.utility
                     Vector3 pxcolour = new Vector3();
                     if (record.Hit)
                     {
-                        pxcolour.x = 1;
-                        pxcolour.y = 1;
-                        pxcolour.z = 1;
+                        Shape shape = database.GetShapeById(record.ShapeId);
+                        Material material = database.GetMaterialById(shape.GetMid());
+                        pxcolour = shape.Paint(record, database.MyLights, material, database.MyScene.AmbientLight, c1.GetViewDirection());
                     }
                     else
                     {

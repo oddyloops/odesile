@@ -12,7 +12,12 @@ namespace RT_CS.shapes
         private Vector3 centre;
         private float radius;
 
-        public Sphere(int id,Vector3 c, float r) : base(id)
+        public override Vector3 GetNormal(Vector3 point)
+        {
+            return (point - centre).Normalize();
+        }
+
+        public Sphere(int id,int mid, Vector3 c, float r) : base(id, mid)
         {
             centre = c;
             radius = r;

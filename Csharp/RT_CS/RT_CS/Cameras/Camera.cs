@@ -22,6 +22,11 @@ namespace RT_CS.Cameras
         protected float pixelWidth;
         protected float pixelHeight;
 
+        public Vector3 GetViewDirection()
+        {
+            return viewDirection;
+        }
+
         public abstract Ray Project(int px, int py);
 
         public Vector3 ComputePixel(int px, int py)
