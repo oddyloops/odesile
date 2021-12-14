@@ -13,7 +13,8 @@ namespace shapes
 		vector3 vdvc;
 
 	public:
-		rectangle(int id, vector3 a, vector3 b, vector3 c, vector3 d);
+		rectangle(int id, int mid, vector3 a, vector3 b, vector3 c, vector3 d);
+
 
 		void intersect(ray r, intersection_record& rec) const;
 

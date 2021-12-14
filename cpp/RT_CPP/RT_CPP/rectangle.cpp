@@ -3,8 +3,8 @@
 #include "operators.h"
 using namespace shapes;
 
-rectangle::rectangle(int id, vector3 a, vector3 b, vector3 c, vector3 d)
-	: triangle(id,a,b,c), vertexD(d)
+rectangle::rectangle(int id,int mid, vector3 a, vector3 b, vector3 c, vector3 d)
+	: triangle(id,mid,a,b,c), vertexD(d)
 {
 	vcvb = vertexC - vertexB;
 	vdvc = vertexD - vertexC;

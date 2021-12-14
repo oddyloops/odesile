@@ -28,9 +28,9 @@ vector3** renderer::render()
 			vector3 pxColor;
 			if (rec->hit)
 			{
-				pxColor.x = 1;
-				pxColor.y = 1;
-				pxColor.z = 1;
+				shape* shape = db.get_shape_by_id(rec->shape_id);
+				material* material = db.get_material_by_id(shape->get_material_id());
+				pxColor = shape->paint(*rec, db.get_lights(), material, db.get_scene().get_ambient_light(), cam.get_view_direction());
 			}
 			else
 			{

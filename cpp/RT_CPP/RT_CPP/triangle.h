@@ -24,9 +24,9 @@ namespace shapes
 		const float BIGGER_EPSILON = 0.00001f;
 		static float simpler_triangle_area(vector3 ab, vector3 ac);
 	public:
-		triangle(int id, vector3 a, vector3 b, vector3 c);
+		triangle(int id,int mid, vector3 a, vector3 b, vector3 c);
 		intersection_record* ray_plane_intersection(ray r) const;
-
+		vector3 get_normal(vector3 point) const;
 		void intersect(ray r, intersection_record& rec) const;
 	};
 }

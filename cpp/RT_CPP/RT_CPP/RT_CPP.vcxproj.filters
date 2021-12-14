@@ -123,12 +123,9 @@
     <ClInclude Include="spot_light.h">
       <Filter>Header Files\lights</Filter>
     </ClInclude>
-<<<<<<< Updated upstream
     <ClInclude Include="material_type.h">
       <Filter>Header Files\materials</Filter>
     </ClInclude>
-=======
->>>>>>> Stashed changes
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
