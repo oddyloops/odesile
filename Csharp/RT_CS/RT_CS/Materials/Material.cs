@@ -12,6 +12,10 @@ namespace RT_CS.Materials
         protected List<float> specularities;
         protected MaterialType type;
 
+        public int GetId()
+        {
+            return id;
+        }
         public Material(int mid, List<float> spcs,MaterialType mt)
         {
             id = mid;

@@ -22,7 +22,7 @@ namespace RT_CS.shapes
             return (ab * ac).Magnitude() * 0.5f;
         }
 
-        public Triangle(int id, Vector3 v1, Vector3 v2, Vector3 v3)  :base(id)
+        public Triangle(int id, int mid, Vector3 v1, Vector3 v2, Vector3 v3)  :base(id, mid)
         {
             vertexA = v1;
             vertexB = v2;
@@ -33,6 +33,10 @@ namespace RT_CS.shapes
             normal = ((v3 - v1) * (v2 - v1)).Normalize();
             D = v1;
             area = SimplerTriangleArea(ab,ac);
+        }
+        public override Vector3 GetNormal(Vector3 point)
+        {
+            return normal;
         }
         public IntersectionRecord RayPlaneIntersection(Ray r)
         {
