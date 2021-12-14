@@ -123,7 +123,7 @@ vector<sphere*>* database_loader::load_spheres(json const& j)
 
 sphere* database_loader::load_sphere(json const& j)
 {
-	sphere* sph = new sphere(j["id"],
+	sphere* sph = new sphere(j["id"], j["material_id"],
 		parse_vector3(j["center"]),
 		j["radius"]);
 	return sph;
@@ -144,7 +144,7 @@ vector<rectangle*>* database_loader::load_rectangles(json const& j)
 
 rectangle* database_loader::load_rectangle(json const& j)
 {
-	rectangle* rec = new rectangle(j["id"], parse_vector3( j["vertexA"]),parse_vector3(j["vertexB"]),
+	rectangle* rec = new rectangle(j["id"], j["material_id"], parse_vector3( j["vertexA"]),parse_vector3(j["vertexB"]),
 		parse_vector3(j["vertexC"]), parse_vector3(j["vertexD"]));
 	return rec;
 }
@@ -162,7 +162,7 @@ vector<triangle*>* database_loader::load_triangles(json const& j)
 
 triangle* database_loader::load_triangle(json const& j)
 {
-	triangle* tri = new triangle(j["id"], parse_vector3(j["vertexA"]), parse_vector3(j["vertexB"]),
+	triangle* tri = new triangle(j["id"], j["material_id"], parse_vector3(j["vertexA"]), parse_vector3(j["vertexB"]),
 		parse_vector3(j["vertexC"]));
 	return tri;
 }

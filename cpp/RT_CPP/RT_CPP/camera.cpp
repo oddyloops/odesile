@@ -39,3 +39,8 @@ vector3 camera::computePixelPosition(int pX, int pY) const
 	vector3 hor = c1 + ((pX + 0.5) * pixelWidth * sideDirection);
 	return hor - ((pY + 0.5) * pixelHeight * upDirection);
 }
+
+vector3 camera::get_view_direction() const
+{
+	return viewDirection;
+}

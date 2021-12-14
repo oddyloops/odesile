@@ -4,7 +4,7 @@
 #include <cfloat>
 using namespace shapes;
 
-triangle::triangle(int id, vector3 a, vector3 b, vector3 c) : shape(id),
+triangle::triangle(int id,int mid, vector3 a, vector3 b, vector3 c) : shape(id,mid),
 vertexA(a), vertexB(b), vertexC(c)
 {
 	ab = vertexB - vertexA;
@@ -65,4 +65,9 @@ void triangle::intersect(ray r, intersection_record& rec) const
 		}
 	}
 	delete ray_int;
+}
+
+vector3 triangle::get_normal(vector3 point) const
+{
+	return normal;
 }

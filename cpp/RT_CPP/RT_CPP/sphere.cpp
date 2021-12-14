@@ -5,7 +5,7 @@
 #include <cfloat>
 using namespace shapes;
 
-sphere ::sphere (int id, vector3 c, float r) : shape(id),
+sphere ::sphere (int id,int mid, vector3 c, float r) : shape(id,mid),
 center(c), radius(r)
 {
 
@@ -40,4 +40,9 @@ void sphere:: intersect(ray r, intersection_record& rec)  const
 		rec.shape_id = id;
 		rec.point = r.position + r.direction * dist;
 	}
+}
+
+vector3 sphere::get_normal(vector3 point) const
+{
+	return (point - center).normalize();
 }

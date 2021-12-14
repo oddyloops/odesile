@@ -2,19 +2,30 @@
 using namespace scene_objects;
 
 
-int scene::get_height()
+int scene::get_height() const
 {
 	return height;
 }
 
-int scene::get_width()
+int scene::get_width() const
 {
 	return width;
 }
 
-vector3 scene::get_background()
+vector3 scene::get_background() const
 {
 	return background;
+}
+
+
+vector3 scene::get_ambient_light() const
+{
+	return ambientLight;
+}
+
+void scene::set_ambient_light(vector3 amb)
+{
+	ambientLight = amb;
 }
 
 void scene::set_width(int w)

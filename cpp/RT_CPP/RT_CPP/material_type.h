@@ -1,2 +1,2 @@
 #pragma once
-#include ""
+enum material_types { SOLID, GRADIENT, CHECKERED, STRIPE };
