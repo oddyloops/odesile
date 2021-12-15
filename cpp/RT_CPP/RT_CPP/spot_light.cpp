@@ -5,18 +5,12 @@
 using namespace utility;
 using namespace lights;
 
-<<<<<<< Updated upstream
+
 spot_light::spot_light(int id, vector3 color, vector3 direction, vector3 o, float fall_of, float inner_angle, float outer_angle) : point_light(id, color, direction, o),
 fall_of(fall_of)
 {
 	inner_angle_cos = cosf(0.5f * inner_angle);
 	outer_angle_cos = cosf(0.5f * outer_angle);
-=======
-spot_light::spot_light(int id, vector3 color, vector3 direction, vector3 o, float fall_of) : point_light(id, color, direction, o),
-fall_of(fall_of)
-{
-	inner_angle_cos = 
->>>>>>> Stashed changes
 }
 
 vector3 spot_light::get_color(vector3 point)const

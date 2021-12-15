@@ -21,19 +21,19 @@ int shape::get_material_id() const
 
 vector3 shape::paint(intersection_record& rec, vector<light*>& lights, material* mat, vector3 ambientLight,vector3 viewDir)
 {
-	vector3 ambientColor = mat->get_ambient_color(this, rec.point);
-	vector3 diffuseColor = mat->get_diffuse_color(this, rec.point);
-	vector3 specularColor = mat->get_specular_color(this, rec.point);
-	float specularity = mat->get_specularity(this, rec.point);
+	vector3 ambientColor = mat->get_ambient_color(id, rec.point);
+	vector3 diffuseColor = mat->get_diffuse_color(id, rec.point);
+	vector3 specularColor = mat->get_specular_color(id, rec.point);
+	float specularity = mat->get_specularity(id, rec.point);
 
 	vector3 color = {0,0,0};
 	for (light* l : lights)
 	{
 		color = color + lightup_material(l, rec, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDir);
 	}
-	color.x = fminf(1, color.x);
-	color.y = fminf(1, color.y);
-	color.z = fminf(1, color.z);
+	color.x = fmaxf(0,fminf(1, color.x));
+	color.y = fmaxf(0,fminf(1, color.y));
+	color.z = fmaxf(0,fminf(1, color.z));
 	return color;
 }
 
@@ -51,10 +51,11 @@ vector3 shape::lightup_material(light* light, intersection_record& rec,
 	vector3 halfway = 0.5f * (reversedView + reversedLight);
 	float specularMult = powf( vector3::dot(halfway, normal), specularity);
 
-	return (ambientLight * ambientColor)
-		+ (diffuseMult * lightColor * diffuseColor) + (specularMult * lightColor * specularColor);
+	vector3 color = (vector3::mult(ambientColor,ambientLight)) + (  diffuseMult * vector3::mult(lightColor,diffuseColor)
+		+ (specularMult * vector3::mult(lightColor,specularColor)));
+	
 
-
+	return color;
 
 }
 

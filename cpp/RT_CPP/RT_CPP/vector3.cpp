@@ -24,3 +24,8 @@ float vector3::dot(vector3 a, vector3 b)
 {
 	return (a.x * b.x) + (a.y * b.y) + (a.z * b.z);
 }
+
+vector3 vector3::mult(vector3 a, vector3 b)
+{
+	return { a.x * b.x,a.y * b.y,a.z * b.z };
+}
