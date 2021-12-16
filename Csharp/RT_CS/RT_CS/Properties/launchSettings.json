@@ -2,7 +2,7 @@
   "profiles": {
     "RT_CS": {
       "commandName": "Project",
-      "commandLineArgs": "scene_files/simple_tri_rect.json"
+      "commandLineArgs": "scene_files/light_material_test.json"
     }
   }
 }

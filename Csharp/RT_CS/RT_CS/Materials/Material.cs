@@ -23,10 +23,10 @@ namespace RT_CS.Materials
             type = mt;
         }
 
-        public abstract Vector3 GetAmbientColor(Shape s, Vector3 point);
-        public abstract Vector3 GetDiffuseColor(Shape s, Vector3 point);
-        public abstract Vector3 GetSpecularColor(Shape s, Vector3 point);
-        public abstract float GetSpecularity(Shape s, Vector3 point);
+        public abstract Vector3 GetAmbientColor(int sid, Vector3 point);
+        public abstract Vector3 GetDiffuseColor(int sid, Vector3 point);
+        public abstract Vector3 GetSpecularColor(int sid, Vector3 point);
+        public abstract float GetSpecularity(int sid, Vector3 point);
 
     }
 }

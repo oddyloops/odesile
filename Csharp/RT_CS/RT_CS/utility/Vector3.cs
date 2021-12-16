@@ -91,5 +91,16 @@ namespace RT_CS.utility
             };
 
         }
+
+        public static Vector3 Mult(Vector3 v1, Vector3 v2)
+        {
+            return new Vector3()
+            {
+                x = v1.x * v2.x,
+                y = v1.y * v2.y,
+                z = v1.z * v2.z
+            };
+
+        }
     }
-    }
+}

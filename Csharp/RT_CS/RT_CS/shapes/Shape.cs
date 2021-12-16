@@ -33,10 +33,10 @@ namespace RT_CS.shapes
         public abstract void Intersect(Ray r,IntersectionRecord intersection);
         public virtual Vector3 Paint(IntersectionRecord record, List<Light> lighting, Material mat, Vector3 ambientLight, Vector3 viewDirection)
         {
-            Vector3 ambientColor = mat.GetAmbientColor(this, record.Point);
-            Vector3 diffuseColor = mat.GetDiffuseColor(this, record.Point);
-            Vector3 specularColor = mat.GetSpecularColor(this, record.Point);
-            float specularity = mat.GetSpecularity(this, record.Point);
+            Vector3 ambientColor = mat.GetAmbientColor(sid, record.Point);
+            Vector3 diffuseColor = mat.GetDiffuseColor(sid, record.Point);
+            Vector3 specularColor = mat.GetSpecularColor(sid, record.Point);
+            float specularity = mat.GetSpecularity(sid, record.Point);
 
             Vector3 color;
             color.x = 0;
@@ -46,9 +46,9 @@ namespace RT_CS.shapes
             foreach (Light lit in lighting)
                 color += LightupMaterial(lit, record, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDirection);
 
-            color.x = MathF.Min(1, color.x);
-            color.y = MathF.Min(1, color.y);
-            color.z = MathF.Min(1, color.z);
+            color.x = MathF.Max(0,MathF.Min(1, color.x));
+            color.y = MathF.Max(0,MathF.Min(1, color.y));
+            color.z = MathF.Max(0,MathF.Min(1, color.z));
             return color;
         }
 
@@ -61,7 +61,7 @@ namespace RT_CS.shapes
             float specularMult = MathF.Pow(Vector3.Dot(norm, halfway), specularity);
             float diffuseMult = Vector3.Dot(reverseLight, norm); 
 
-            return (ambientLight * ambientColor) + (diffuseMult * lightColor * diffuseColor) + (specularMult * lightColor * SpecularColor);
+            return Vector3.Mult(ambientLight,ambientColor) + diffuseMult * Vector3.Mult(lightColor ,diffuseColor) + specularMult * Vector3.Mult(lightColor, SpecularColor);
         }
 
     }

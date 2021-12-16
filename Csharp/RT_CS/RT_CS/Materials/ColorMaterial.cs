@@ -17,22 +17,22 @@ namespace RT_CS.Materials
             diffuseColors = dc;
             specularColors = sc;
         }
-        public override Vector3 GetAmbientColor(Shape s, Vector3 point)
+        public override Vector3 GetAmbientColor(int sid, Vector3 point)
         {
             return ambientColors[0];
         }
 
-        public override Vector3 GetDiffuseColor(Shape s, Vector3 point)
+        public override Vector3 GetDiffuseColor(int sid, Vector3 point)
         {
             return diffuseColors[0];
         }
 
-        public override Vector3 GetSpecularColor(Shape s, Vector3 point)
+        public override Vector3 GetSpecularColor(int sid, Vector3 point)
         {
             return specularColors[0];
         }
 
-        public override float GetSpecularity(Shape s, Vector3 point)
+        public override float GetSpecularity(int sid, Vector3 point)
         {
             return specularities[0];
         }
