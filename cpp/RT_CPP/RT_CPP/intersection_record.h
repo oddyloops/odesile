@@ -10,5 +10,6 @@ namespace utility
 		int shape_id;
 		float distance = FLT_MAX;
 		bool hit = false;
+		int except_id = -1;
 	};
 }

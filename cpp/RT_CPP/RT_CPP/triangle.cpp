@@ -44,6 +44,10 @@ intersection_record* triangle::ray_plane_intersection(ray r) const
 
 void triangle::intersect(ray r, intersection_record& rec) const
 {
+	if (id == rec.except_id)
+	{
+		return;
+	}
 	intersection_record* ray_int = ray_plane_intersection(r);
 	if (ray_int->hit)
 	{

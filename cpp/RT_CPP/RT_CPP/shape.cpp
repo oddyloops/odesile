@@ -19,8 +19,33 @@ int shape::get_material_id() const
 	return material_id;
 }
 
-vector3 shape::paint(intersection_record& rec, vector<light*>& lights, material* mat, vector3 ambientLight,vector3 viewDir)
+material* get_material_by_id(int id, vector<material*>* materials)
 {
+	for (material* mat : *materials)
+	{
+		if (mat->get_id() == id)
+		{
+			return mat;
+		}
+	}
+	return nullptr;
+}
+
+shape* get_shape_by_id(int id, vector<shape*>* shapes)
+{
+	for (shape* shp : *shapes)
+	{
+		if (shp->get_id() == id)
+		{
+			return shp;
+		}
+	}
+	return nullptr;
+}
+
+vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 ambientLight,vector3 viewDir,int generation, vector<shape*>* shapes, vector<material*>* materials)
+{
+	material* mat = get_material_by_id(material_id,materials);
 	vector3 ambientColor = mat->get_ambient_color(id, rec.point);
 	vector3 diffuseColor = mat->get_diffuse_color(id, rec.point);
 	vector3 specularColor = mat->get_specular_color(id, rec.point);
@@ -34,6 +59,34 @@ vector3 shape::paint(intersection_record& rec, vector<light*>& lights, material*
 	color.x = fmaxf(0,fminf(1, color.x));
 	color.y = fmaxf(0,fminf(1, color.y));
 	color.z = fmaxf(0,fminf(1, color.z));
+	vector3 reflectiveColor = {0,0,0};
+	vector3 refractiveColor = {0,0,0};
+
+	if (generation > 0)
+	{
+		float reflect = mat->get_reflectivity(id, rec.point);
+		float transparency = mat->get_transparency(id, rec.point);
+		vector3 normal = get_normal(rec.point);
+		if (reflect > 0)
+		{
+			vector3 reflectedDir = ( 2 * vector3::dot(normal, viewDir) * normal - viewDir).normalize();
+			ray r;
+			r.position = rec.point;
+			r.direction = reflectedDir;
+			intersection_record reflectRec;
+			intersect_shapes(r, reflectRec, shapes);
+			if (reflectRec.hit)
+			{
+				shape* reflectShape = get_shape_by_id(reflectRec.shape_id, shapes);
+				reflectiveColor = reflectShape->paint(reflectRec, lights, ambientLight, reflectedDir, generation - 1, shapes, materials);
+			}
+		}
+		if (transparency > 0)
+		{
+
+		}
+	}
+
 	return color;
 }
 
@@ -57,6 +110,14 @@ vector3 shape::lightup_material(light* light, intersection_record& rec,
 
 	return color;
 
+}
+
+void shape::intersect_shapes(ray r, intersection_record& rec, vector<shape*>* shapes)
+{
+	for (shape* s : *shapes)
+	{
+		s->intersect(r, rec);
+	}
 }
 
 

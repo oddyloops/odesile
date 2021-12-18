@@ -218,7 +218,8 @@ color_material* database_loader::load_color_material(json const& j)
 {
 	color_material* mat = new color_material(j["id"], int_to_enum(j["type"]),
 		parse_vector3_array(j["ambientColors"]), parse_vector3_array(j["diffuseColors"]),
-		parse_vector3_array(j["specularColors"]), parse_float_array(j["specularities"]));
+		parse_vector3_array(j["specularColors"]), parse_float_array(j["specularities"]),
+		parse_float_array(j["reflectivities"]), parse_float_array(j["transparencies"]));
 	return mat;
 }
 

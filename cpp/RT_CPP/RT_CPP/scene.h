@@ -10,6 +10,7 @@ namespace scene_objects
 		int width;
 		vector3 background;
 		vector3 ambientLight;
+		int generation = 1;
 
 	public:
 		int get_height() const;
@@ -20,6 +21,8 @@ namespace scene_objects
 
 		vector3 get_background() const;
 
+		int get_generation() const;
+
 		void set_width(int w);
 
 		void set_height(int h);
@@ -27,5 +30,7 @@ namespace scene_objects
 		void set_ambient_light(vector3 amb);
 
 		void set_background(vector3 bg);
+
+		void set_generation(int g);
 	};
 }

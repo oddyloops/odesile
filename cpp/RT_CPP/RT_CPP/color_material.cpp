@@ -3,7 +3,8 @@
 using namespace materials;
 
 color_material::color_material(int mid, material_types tp, vector<vector3> acs,
-	vector<vector3> dcs, vector<vector3> spcs, vector<float> specs) : material(mid,tp,specs),
+	vector<vector3> dcs, vector<vector3> spcs, vector<float> specs,
+	vector<float> rfs, vector<float> rts) : material(mid,tp,specs,rfs,rts),
 	ambient_colors(acs),diffuse_colors(dcs),specular_colors(spcs)
 {
 
@@ -25,4 +26,14 @@ vector3 color_material::get_specular_color(int sid, vector3 v) const
 float color_material::get_specularity(int sid, vector3 v) const
 {
 	return specularities[0];
+}
+
+float color_material::get_reflectivity(int sid, vector3 v) const
+{
+	return reflectivities[0];
+}
+
+float color_material::get_transparency(int sid, vector3 v) const
+{
+	return transparencies[0];
 }
