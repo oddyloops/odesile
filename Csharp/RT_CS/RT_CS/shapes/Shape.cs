@@ -28,11 +28,41 @@ namespace RT_CS.shapes
         {
             return sid;
         }
+        private void IntersectShapes(Ray r, IntersectionRecord record, List<Shape> shapes)
+        {
+            foreach (Shape s in shapes)
+            {
+                s.Intersect(r, record);
+            }
+        }
+
+       
 
         public abstract Vector3 GetNormal(Vector3 point);
         public abstract void Intersect(Ray r,IntersectionRecord intersection);
-        public virtual Vector3 Paint(IntersectionRecord record, List<Light> lighting, Material mat, Vector3 ambientLight, Vector3 viewDirection)
+        public virtual Vector3 Paint(IntersectionRecord record, List<Light> lighting, Vector3 ambientLight, Vector3 viewDirection,
+            int generation,List<Shape> shapes, List<Material> materials)
         {
+             Shape GetShapeById(int id)
+            {
+                foreach (Shape shape in shapes)
+                {
+                    if (id == shape.GetId())
+                        return shape;
+                }
+                return null;
+            }
+
+             Material GetMaterialById(int id)
+            {
+                foreach (Material material in materials)
+                {
+                    if (id == material.GetId())
+                        return material;
+                }
+                return null;
+            }
+            Material mat = GetMaterialById(sid);
             Vector3 ambientColor = mat.GetAmbientColor(sid, record.Point);
             Vector3 diffuseColor = mat.GetDiffuseColor(sid, record.Point);
             Vector3 specularColor = mat.GetSpecularColor(sid, record.Point);
@@ -49,6 +79,42 @@ namespace RT_CS.shapes
             color.x = MathF.Max(0,MathF.Min(1, color.x));
             color.y = MathF.Max(0,MathF.Min(1, color.y));
             color.z = MathF.Max(0,MathF.Min(1, color.z));
+
+            Vector3 reflectivecolor, refractivecolor;
+            reflectivecolor.x = 0;
+            reflectivecolor.y = 0;
+            reflectivecolor.z = 0;
+
+            refractivecolor.x = 0;
+            refractivecolor.y = 0;
+            refractivecolor.z = 0;
+
+            if (generation > 0)
+            {
+                float reflect = mat.GetReflectivity(sid, record.Point);
+                float transparent = mat.GetTransparency(sid, record.Point);
+
+                if (reflect > 0)
+                {
+                    Vector3 reverseview = (((2 * Vector3.Dot(-1 * viewDirection, GetNormal(record.Point))) * GetNormal(record.Point)) - (-1 * viewDirection)).Normalize();
+                    Ray r;
+                    r.posit = record.Point;
+                    r.direct = reverseview;
+                    IntersectionRecord reflectRec;
+                    IntersectShapes(r, reflectRec, shapes);
+
+                    if (reflectRec.Hit)
+                    {
+                        Shape reflectShape = GetShapeById(reflectRec.ShapeId);
+                        reflectivecolor = reflectShape.Paint(reflectRec, lighting, ambientLight, reverseview, generation - 1, shapes, materials);
+                    }
+                }
+
+                if (transparent > 0)
+                {
+
+                }
+            }
             return color;
         }
 

@@ -26,7 +26,7 @@ namespace RT_CS.shapes
 
         public override void Intersect(Ray r, IntersectionRecord record)
         {
-
+            if ()
             Vector3 oc = r.posit - centre;
             float uOc = Vector3.Dot(r.direct, oc);
             float root = uOc * uOc - (oc.MagnitudeSq() - radius * radius);

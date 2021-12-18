@@ -11,6 +11,7 @@ namespace RT_CS.sceneObjects
         public int Height { get; set; }
         public Vector3 Background { get; set; }
         public Vector3 AmbientLight { get; set; }
+        public int Generation { get; set; } = 1;
         
     }
 

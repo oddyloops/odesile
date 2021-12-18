@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\oddyl\\source\\repos\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj": {}
+    "C:\\Users\\HP\\Documents\\GitHub\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj": {}
   },
   "projects": {
-    "C:\\Users\\oddyl\\source\\repos\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj": {
+    "C:\\Users\\HP\\Documents\\GitHub\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\oddyl\\source\\repos\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj",
+        "projectUniqueName": "C:\\Users\\HP\\Documents\\GitHub\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj",
         "projectName": "RT_CS",
-        "projectPath": "C:\\Users\\oddyl\\source\\repos\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj",
-        "packagesPath": "C:\\Users\\oddyl\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\oddyl\\source\\repos\\odesile\\Csharp\\RT_CS\\RT_CS\\obj\\",
+        "projectPath": "C:\\Users\\HP\\Documents\\GitHub\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj",
+        "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\HP\\Documents\\GitHub\\odesile\\Csharp\\RT_CS\\RT_CS\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
-          "C:\\Users\\oddyl\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Users\\oddyl\\source\\packages": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -60,6 +63,24 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[3.1.10, 3.1.10]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.21, 3.1.21]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            },
+            {
+              "name": "Microsoft.WindowsDesktop.App.Ref",
+              "version": "[3.1.0, 3.1.0]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
