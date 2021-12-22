@@ -9,20 +9,21 @@ namespace RT_CS.Materials
     public abstract class Material
     {
         protected int id;
-        protected List<float> specularities, reflectivity, transparency;
+        protected List<float> specularities, reflectivity, transparency, refractiveIndices;
         protected MaterialType type;
 
         public int GetId()
         {
             return id;
         }
-        public Material(int mid, List<float> spcs,MaterialType mt, List<float> refl, List<float> trans)
+        public Material(int mid, List<float> spcs,MaterialType mt, List<float> refl, List<float> trans, List<float> refr)
         {
             id = mid;
             specularities = spcs;
             type = mt;
             reflectivity = refl;
             transparency = trans;
+            refractiveIndices = refr;
         }
 
         public abstract Vector3 GetAmbientColor(int sid, Vector3 point);
@@ -31,6 +32,7 @@ namespace RT_CS.Materials
         public abstract float GetSpecularity(int sid, Vector3 point);
         public abstract float GetReflectivity(int sid, Vector3 point);
         public abstract float GetTransparency(int sid, Vector3 point);
+        public abstract float GetRefractiveIndex(int sid, Vector3 point);
 
 
     }

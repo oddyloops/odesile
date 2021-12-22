@@ -184,7 +184,7 @@ namespace RT_CS.utility.IO
             ColorMaterial material = new ColorMaterial((int)colorMatDict["id"],
                 ParseFloats((JArray)colorMatDict["specularities"]), (MaterialType)(int)colorMatDict["type"],
                 ParseVector3s((JArray)colorMatDict["ambientColors"]), ParseVector3s((JArray)colorMatDict["diffuseColors"]),
-                ParseVector3s((JArray)colorMatDict["specularColors"]));
+                ParseVector3s((JArray)colorMatDict["specularColors"]), ParseFloats((JArray)colorMatDict["refractiveIndices"]));
             db.MyMaterials.Add(material);
         }
 

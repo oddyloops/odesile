@@ -8,10 +8,9 @@ namespace RT_CS.Materials
 {
     public class ColorMaterial : Material
     {
-        private List<Vector3> ambientColors;
-        private List<Vector3> diffuseColors;
-        private List<Vector3> specularColors;
-        public ColorMaterial(int mid, List<float> spcs, MaterialType mt, List<float> refl, List<float> trans, List<Vector3> ac,List<Vector3> dc, List<Vector3> sc) : base(mid,spcs,mt,refl,trans)
+        private List<Vector3> ambientColors, diffuseColors, specularColors;
+   
+        public ColorMaterial(int mid, List<float> spcs, MaterialType mt, List<float> refl, List<float> trans, List<float> refr, List<Vector3> ac,List<Vector3> dc, List<Vector3> sc) : base(mid,spcs,mt,refl,trans,refr)
         {
             ambientColors = ac;
             diffuseColors = dc;
@@ -44,6 +43,10 @@ namespace RT_CS.Materials
         public override float GetTransparency(int sid, Vector3 point)
         {
             return transparency[0];
+        }
+        public override float GetRefractiveIndex(int sid, Vector3 point)
+        {
+            return refractiveIndices[0];    
         }
     }
 }
