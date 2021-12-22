@@ -13,6 +13,10 @@ center(c), radius(r)
 
 void sphere:: intersect(ray r, intersection_record& rec)  const
 {
+	if (id == rec.except_id)
+	{
+		return;
+	}
 	vector3 sub_1 = r.position - center;
 	float sub_2 = vector3::dot(sub_1, r.direction);
 	float grad = (sub_2 * sub_2) - (sub_1.magnitude_sq() - (radius * radius));

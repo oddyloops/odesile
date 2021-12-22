@@ -23,6 +23,11 @@ vector3 scene::get_ambient_light() const
 	return ambientLight;
 }
 
+int scene::get_generation() const
+{
+	return generation;
+}
+
 void scene::set_ambient_light(vector3 amb)
 {
 	ambientLight = amb;
@@ -41,4 +46,9 @@ void scene::set_height(int h)
 void scene::set_background(vector3 bg)
 {
 	background = bg;
+}
+
+void scene::set_generation(int g)
+{
+	generation = g;
 }

@@ -14,6 +14,11 @@ float vector3 ::magnitude ()
 	return sqrtf(magnitude_sq());
 }
 
+vector3 vector3::clamp()
+{
+	return { fmaxf(0,fminf(x,1)), fmaxf(0,fminf(y,1)) , fmaxf(0,fminf(z,1)) };
+}
+
 vector3 vector3::normalize()
 {
 	float m = magnitude();

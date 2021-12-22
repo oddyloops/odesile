@@ -8,6 +8,7 @@ namespace utility
 		float magnitude();
 		float magnitude_sq();
 		vector3 normalize();
+		vector3 clamp();
 		static float dot(vector3 a, vector3 b);
 		static vector3 mult(vector3 a, vector3 b);
 	};

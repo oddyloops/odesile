@@ -18,6 +18,11 @@ namespace shapes
 		vector3 lightup_material(light* light, intersection_record& rec,
 			vector3 ambientColor,vector3 diffuseColor, vector3 specularColor, float specularity, vector3 ambientLight,
 			vector3 viewDir);
+
+		void intersect_shapes(ray r, intersection_record& rec, vector<shape*>* shapes);
+
+		static material* get_material_by_id(int id,vector<material*>* materials);
+		static shape* get_shape_by_id(int id,vector<shape*>* shapes);
 	protected:
 		int id;
 		int material_id;
@@ -34,8 +39,8 @@ namespace shapes
 
 		virtual vector3 get_normal(vector3 point) const = 0;
 
-		virtual vector3 paint(intersection_record& rec, vector<light*>& lights,material* mat,vector3 ambientLight,
-			vector3 viewDir);
+		virtual vector3 paint(intersection_record& rec, vector<light*>& lights,vector3 ambientLight,
+			vector3 viewDir,int generation, vector<shape*>* shapes,vector<material*>* materials);
 
 
 

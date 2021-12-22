@@ -19,8 +19,33 @@ int shape::get_material_id() const
 	return material_id;
 }
 
-vector3 shape::paint(intersection_record& rec, vector<light*>& lights, material* mat, vector3 ambientLight,vector3 viewDir)
+material* shape::get_material_by_id(int id, vector<material*>* materials)
 {
+	for (material* mat : *materials)
+	{
+		if (mat->get_id() == id)
+		{
+			return mat;
+		}
+	}
+	return nullptr;
+}
+
+shape* shape::get_shape_by_id(int id, vector<shape*>* shapes)
+{
+	for (shape* shp : *shapes)
+	{
+		if (shp->get_id() == id)
+		{
+			return shp;
+		}
+	}
+	return nullptr;
+}
+
+vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 ambientLight,vector3 viewDir,int generation, vector<shape*>* shapes, vector<material*>* materials)
+{
+	material* mat = get_material_by_id(material_id,materials);
 	vector3 ambientColor = mat->get_ambient_color(id, rec.point);
 	vector3 diffuseColor = mat->get_diffuse_color(id, rec.point);
 	vector3 specularColor = mat->get_specular_color(id, rec.point);
@@ -31,10 +56,57 @@ vector3 shape::paint(intersection_record& rec, vector<light*>& lights, material*
 	{
 		color = color + lightup_material(l, rec, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDir);
 	}
-	color.x = fmaxf(0,fminf(1, color.x));
-	color.y = fmaxf(0,fminf(1, color.y));
-	color.z = fmaxf(0,fminf(1, color.z));
-	return color;
+	color = color.clamp();
+	vector3 reflectiveColor = {0,0,0};
+	vector3 refractiveColor = {0,0,0};
+	vector3 reversedView = -1 * viewDir;
+
+	if (generation > 0)
+	{
+		float reflectivity = mat->get_reflectivity(id, rec.point);
+		float transparency = mat->get_transparency(id, rec.point);
+		float refractIndex = mat->get_refractive_index(id, rec.point);
+		vector3 normal = get_normal(rec.point);
+		if (reflectivity > 0)
+		{
+			vector3 reflectedDir = ( 2 * vector3::dot(normal, reversedView) * normal - reversedView).normalize();
+			ray r;
+			r.position = rec.point;
+			r.direction = reflectedDir;
+			intersection_record reflectRec;
+			reflectRec.except_id = id;
+			intersect_shapes(r, reflectRec, shapes);
+			if (reflectRec.hit)
+			{
+				shape* reflectShape = get_shape_by_id(reflectRec.shape_id, shapes);
+				reflectiveColor = reflectShape->paint(reflectRec, lights, ambientLight, reflectedDir, generation - 1, shapes, materials).clamp();
+			}
+		}
+		if (transparency > 0)
+		{
+			float cosIncidence = vector3::dot(normal, reversedView);
+			float sinIncidence = sinf(acosf(cosIncidence));
+			float sinRefract = sinIncidence / refractIndex;
+			float cosRefract = cosf(asinf(sinRefract));
+
+			vector3 refractDir = ( - 1 * ((reversedView / refractIndex) + ((cosRefract - (cosIncidence / refractIndex)) * normal))).normalize();
+			ray r;
+			r.position = rec.point;
+			r.direction = refractDir;
+			intersection_record refractRec;
+			refractRec.except_id = id;
+			intersect_shapes(r, refractRec, shapes);
+			if (refractRec.hit)
+			{
+				shape* refractShape = get_shape_by_id(refractRec.shape_id, shapes);
+				refractiveColor = refractShape->paint(refractRec, lights, ambientLight, refractDir, generation - 1, shapes, materials).clamp();
+			}
+		}
+
+		color = ((1 - transparency - reflectivity) * color) + (reflectivity * reflectiveColor) + (transparency * refractiveColor);
+	}
+
+	return color.clamp();
 }
 
 
@@ -57,6 +129,14 @@ vector3 shape::lightup_material(light* light, intersection_record& rec,
 
 	return color;
 
+}
+
+void shape::intersect_shapes(ray r, intersection_record& rec, vector<shape*>* shapes)
+{
+	for (shape* s : *shapes)
+	{
+		s->intersect(r, rec);
+	}
 }
 
 

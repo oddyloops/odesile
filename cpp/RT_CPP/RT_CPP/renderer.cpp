@@ -30,7 +30,8 @@ vector3** renderer::render()
 			{
 				shape* shape = db.get_shape_by_id(rec->shape_id);
 				material* material = db.get_material_by_id(shape->get_material_id());
-				pxColor = shape->paint(*rec, db.get_lights(), material, db.get_scene().get_ambient_light(), cam.get_view_direction());
+				pxColor = shape->paint(*rec, db.get_lights(),  db.get_scene().get_ambient_light(), cam.get_view_direction(),db.get_scene().get_generation(),
+					&shapes,&db.get_materials());
 			}
 			else
 			{
