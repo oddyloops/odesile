@@ -4,7 +4,7 @@ using namespace materials;
 
 color_material::color_material(int mid, material_types tp, vector<vector3> acs,
 	vector<vector3> dcs, vector<vector3> spcs, vector<float> specs,
-	vector<float> rfs, vector<float> rts) : material(mid,tp,specs,rfs,rts),
+	vector<float> rfs, vector<float> rts, vector<float> rfIs) : material(mid,tp,specs,rfs,rts, rfIs),
 	ambient_colors(acs),diffuse_colors(dcs),specular_colors(spcs)
 {
 
@@ -36,4 +36,9 @@ float color_material::get_reflectivity(int sid, vector3 v) const
 float color_material::get_transparency(int sid, vector3 v) const
 {
 	return transparencies[0];
+}
+
+float color_material::get_refractive_index(int sid, vector3 v) const
+{
+	return refractiveIndices[0];
 }
