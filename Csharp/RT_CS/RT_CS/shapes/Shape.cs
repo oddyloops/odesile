@@ -105,6 +105,7 @@ namespace RT_CS.shapes
                     r.posit = record.Point;
                     r.direct = reverseddir;
                     IntersectionRecord reflectRec = new IntersectionRecord();
+                    reflectRec.ExceptId = sid;
                     IntersectShapes(r, reflectRec, shapes);
 
                     if (reflectRec.Hit)
@@ -125,6 +126,7 @@ namespace RT_CS.shapes
                     r.posit = record.Point;
                     r.direct = refractedDirection;
                     IntersectionRecord refractRec = new IntersectionRecord();
+                    refractRec.ExceptId = sid;
                     IntersectShapes(r, refractRec, shapes);
 
                     if (refractRec.Hit)

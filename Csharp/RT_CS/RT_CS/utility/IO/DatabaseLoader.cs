@@ -182,9 +182,9 @@ namespace RT_CS.utility.IO
         private static void LoadColorMaterial(JObject colorMatDict, SceneDatabase db)
         {
             ColorMaterial material = new ColorMaterial((int)colorMatDict["id"],
-                ParseFloats((JArray)colorMatDict["specularities"]), (MaterialType)(int)colorMatDict["type"],
-                ParseVector3s((JArray)colorMatDict["ambientColors"]), ParseVector3s((JArray)colorMatDict["diffuseColors"]),
-                ParseVector3s((JArray)colorMatDict["specularColors"]), ParseFloats((JArray)colorMatDict["refractiveIndices"]));
+                ParseFloats((JArray)colorMatDict["specularities"]), (MaterialType)(int)colorMatDict["type"], ParseFloats((JArray)colorMatDict["reflectivities"]),
+                ParseFloats((JArray)colorMatDict["transparencies"]), ParseFloats((JArray)colorMatDict["refractiveIndices"]), ParseVector3s((JArray)colorMatDict["ambientColors"]), ParseVector3s((JArray)colorMatDict["diffuseColors"]),
+                ParseVector3s((JArray)colorMatDict["specularColors"]));
             db.MyMaterials.Add(material);
         }
 

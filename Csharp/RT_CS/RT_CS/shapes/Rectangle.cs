@@ -27,6 +27,10 @@ namespace RT_CS.shapes
 
         public override void Intersect(Ray r, IntersectionRecord intersection)
         {
+            if (intersection.ExceptId == sid)
+            {
+                return;
+            }
             IntersectionRecord inter = RayPlaneIntersection(r);
             if (inter.Hit)
             {
