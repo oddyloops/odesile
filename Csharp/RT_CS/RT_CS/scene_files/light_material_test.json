@@ -10,7 +10,7 @@
     "focalLength": 2,
     "farPlane": 20,
     "upDirection": "0,1,0",
-    "position": "-8,0,0",
+    "position": "-5,0,-5",
     "target": "0,0,0",
     "fieldOfView": 0.785
   },
@@ -18,26 +18,26 @@
     "Spheres": [
       {
         "id": 5,
-        "radius": 2,
-        "center": "5,0,0",
+        "radius": 1.5,
+        "center": "8,0,0",
         "materialId" :  1
       }
     ],
     "Triangles": [
       {
         "id": 1,
-        "vertexA": "5,-1.5,-5.5",
-        "vertexB": "5,1.5,-4",
-        "vertexC": "5,-1.5,-2.5",
+        "vertexA": "5,-1.5,-1.5",
+        "vertexB": "5,1.5,0",
+        "vertexC": "5,-1.5,1.5",
         "materialId" :  2
       },
 
       {
         "id": 4,
-        "vertexA": "5,-1.5,2.5",
-        "vertexB": "5,1.5,5",
-        "vertexC": "5,-1.5,7.5",
-        "materialId" :  3
+        "vertexA": "3,-1.5,-1.5",
+        "vertexB": "3,1.5,0",
+        "vertexC": "3,-1.5,1.5",
+        "materialId": 3
       }
 
     ],
@@ -52,7 +52,10 @@
         "ambientColors": [ "1,0,0" ],
         "diffuseColors": [ "0.2,1,0.3" ],
         "specularColors": [ "0.7,1,0.8" ],
-        "specularities": [ 15.0 ]
+        "specularities": [ 15.0 ],
+        "reflectivities": [ 0.5 ],
+        "refractiveIndices": [ 1 ],
+        "transparencies" :  [ 0.2 ]
       },
 
       {
@@ -61,7 +64,10 @@
         "ambientColors": [ "0,0.2,0.2" ],
         "diffuseColors": [ "0.7,0.5,0.6" ],
         "specularColors": [ "1,1,1" ],
-        "specularities": [ 40.0 ]
+        "specularities": [ 40.0 ],
+        "reflectivities": [ 0 ],
+        "refractiveIndices": [ 1 ],
+        "transparencies": [ 0 ]
       },
 
       {
@@ -70,7 +76,10 @@
         "ambientColors": [ "0,0,0" ],
         "diffuseColors": [ "0,0,1" ],
         "specularColors": [ "0,0,1" ],
-        "specularities": [ 200.0 ]
+        "specularities": [ 200.0 ],
+        "reflectivities": [ 0 ],
+        "refractiveIndices": [ 1.7 ],
+        "transparencies": [ 0.3 ]
       }
     ]
   },

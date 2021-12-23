@@ -45,7 +45,7 @@ namespace RT_CS.utility
                     {
                         Shape shape = database.GetShapeById(record.ShapeId);
                         Material material = database.GetMaterialById(shape.GetMid());
-                        pxcolour = shape.Paint(record, database.MyLights, material, database.MyScene.AmbientLight, c1.GetViewDirection());
+                        pxcolour = shape.Paint(record, database.MyLights, database.MyScene.AmbientLight, c1.GetViewDirection(), database.MyScene.Generation, myShapes,database.MyMaterials);
                     }
                     else
                     {
