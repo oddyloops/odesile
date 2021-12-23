@@ -76,7 +76,7 @@ namespace RT_CS.shapes
 
                 if(Math.Abs(1-sum) < BIGGER_EPSILON)
                 {
-                    if (inter.Distance < intersection.Distance)
+                    if (inter.Distance < intersection.Distance && inter.Distance > 0)
                     {
                         intersection.Distance = inter.Distance;
                         intersection.Hit = true;

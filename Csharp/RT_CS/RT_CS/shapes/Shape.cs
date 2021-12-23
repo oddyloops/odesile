@@ -74,7 +74,7 @@ namespace RT_CS.shapes
             color.z = 0;
 
             foreach (Light lit in lighting)
-                color += LightupMaterial(lit, record, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDirection);
+                color += LightupMaterial(lit, record, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDirection,shapes);
 
             color.x = MathF.Max(0,MathF.Min(1, color.x));
             color.y = MathF.Max(0,MathF.Min(1, color.y));
@@ -142,14 +142,26 @@ namespace RT_CS.shapes
             return color;
         }
 
-        private Vector3 LightupMaterial (Light lit, IntersectionRecord record, Vector3 ambientColor, Vector3 diffuseColor, Vector3 SpecularColor, float specularity, Vector3 ambientLight, Vector3 viewDirection)
+        private Vector3 LightupMaterial (Light lit, IntersectionRecord record, Vector3 ambientColor, Vector3 diffuseColor, Vector3 SpecularColor, float specularity, Vector3 ambientLight, Vector3 viewDirection, List<Shape> shapes)
         {
-            Vector3 norm = GetNormal(record.Point);
             Vector3 reverseLight = -1 * lit.GetDirection(record.Point);
+            Ray shadowRay = new Ray() {  posit = record.Point, direct = reverseLight };
+            IntersectionRecord shadowRec = new IntersectionRecord() { ExceptId = sid };
+            IntersectShapes(shadowRay, shadowRec, shapes);
+            if(shadowRec.Hit)
+            {
+                float distSq = shadowRec.Distance * shadowRec.Distance;
+                if (distSq < lit.LightPointDistance(record.Point))
+                {
+                    return Vector3.Mult(ambientLight, ambientColor);
+                }
+            }
+            Vector3 norm = GetNormal(record.Point);
+            
             Vector3 halfway = (viewDirection + reverseLight) * 0.5f;
             Vector3 lightColor = lit.GetColor(record.Point);
             float specularMult = MathF.Pow(Vector3.Dot(norm, halfway), specularity);
-            float diffuseMult = Vector3.Dot(reverseLight, norm); 
+            float diffuseMult = MathF.Abs(Vector3.Dot(reverseLight, norm)); 
 
             return Vector3.Mult(ambientLight,ambientColor) + diffuseMult * Vector3.Mult(lightColor ,diffuseColor) + specularMult * Vector3.Mult(lightColor, SpecularColor);
         }

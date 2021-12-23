@@ -78,7 +78,8 @@ namespace RT_CS.utility.IO
             {
                 Height = (int)sceneDict["height"],
                 Width = (int)sceneDict["width"],
-                Background = ParseVector3((string)sceneDict["background"])
+                Background = ParseVector3((string)sceneDict["background"]),
+                AmbientLight = ParseVector3((string)sceneDict["ambientLight"])
             };
             db.MyScene = scene;
         }

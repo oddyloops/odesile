@@ -18,5 +18,10 @@ namespace RT_CS.Lights
         {
             return (point - origin).Normalize();
         }
+
+        public override float LightPointDistance(Vector3 point)
+        {
+            return (point - origin).MagnitudeSq();
+        }
     }
 }

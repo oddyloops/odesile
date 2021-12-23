@@ -16,5 +16,10 @@ namespace RT_CS.Lights
         {
             return direction;
         }
+
+        public override float LightPointDistance(Vector3 point)
+        {
+            return float.PositiveInfinity;
+        }
     }
 }

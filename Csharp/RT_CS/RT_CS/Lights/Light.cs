@@ -20,6 +20,8 @@ namespace RT_CS.Lights
 
         public abstract Vector3 GetDirection(Vector3 point);
 
+        public abstract float LightPointDistance(Vector3 point);
+
         public virtual Vector3 GetColor(Vector3 point)
         {
             return color;
