@@ -15,3 +15,7 @@ vector3 point_light::get_direction(vector3 coordinate) const
 	return (coordinate - origin).normalize();
 }
 
+float point_light::light_point_distance(vector3 point)const
+{
+	return(point - origin).magnitude_sq();
+}

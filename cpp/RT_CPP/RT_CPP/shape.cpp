@@ -54,7 +54,7 @@ vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 a
 	vector3 color = {0,0,0};
 	for (light* l : lights)
 	{
-		color = color + lightup_material(l, rec, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDir);
+		color = color + lightup_material(l, rec, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDir, shapes);
 	}
 	color = color.clamp();
 	vector3 reflectiveColor = {0,0,0};
@@ -111,14 +111,28 @@ vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 a
 
 
 vector3 shape::lightup_material(light* light, intersection_record& rec,
-	vector3 ambientColor, vector3 diffuseColor, vector3 specularColor, float specularity, vector3 ambientLight,vector3 viewDir)
+	vector3 ambientColor, vector3 diffuseColor, vector3 specularColor, float specularity, vector3 ambientLight,vector3 viewDir, vector<shape*>* shapes)
 {
 	vector3 reversedLight = -1 * light->get_direction(rec.point);
 	vector3 reversedView = -1 * viewDir;
 	vector3 normal = get_normal(rec.point);
 	vector3 lightColor = light->get_color(rec.point);
+	ray rr;
+	rr.position = rec.point;
+	rr.direction = reversedLight;
+	intersection_record recs;
+	recs.except_id = id;
+	intersect_shapes(rr, recs, shapes);
+	if (recs.hit)
+	{
+		float dist_square = recs.distance * recs.distance;
+		if (dist_square < light->light_point_distance(rec.point))
+			return vector3::mult(ambientColor, ambientLight);
+	}
 
-	float diffuseMult = vector3::dot(reversedLight , normal);
+
+	float diffuseMult = fabsf(vector3::dot(reversedLight , normal));
+
 
 	vector3 halfway = 0.5f * (reversedView + reversedLight);
 	float specularMult = powf( vector3::dot(halfway, normal), specularity);

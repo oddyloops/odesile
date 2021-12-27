@@ -9,5 +9,6 @@ namespace lights
 	public:
 		directional_light(int id, vector3 color, vector3 direction);
 		vector3 get_direction(vector3 coordinate)const;
+		float light_point_distance(vector3 point)const;
 	};
 }
