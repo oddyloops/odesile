@@ -95,7 +95,7 @@
       {
         "id": 2,
         "Color": "1,1,1",
-        "Origin" :  "2,0,-4"
+        "Origin" :  "2.9,0,0"
       }
     ],
 
@@ -104,7 +104,7 @@
         "id": 3,
         "Color": "1,1,1",
         "Direction": "1,0,0",
-        "Origin": "-1.5,0,5",
+        "Origin": "-1.5,0,0",
         "FallOff" :  5,
         "InnerAngle": 0.524,
         "OuterAngle" :  0.65

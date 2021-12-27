@@ -33,7 +33,7 @@ void rectangle::intersect(ray r, intersection_record& rec) const
 
         if (fabsf(1 - sum) < BIGGER_EPSILON)
         {
-            if (ray_rec->distance < rec.distance)
+            if (ray_rec->distance < rec.distance && ray_rec->distance > 0)
             {
                 rec.distance = ray_rec->distance;
                 rec.hit = true;

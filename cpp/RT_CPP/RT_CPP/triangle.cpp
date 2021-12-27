@@ -59,7 +59,7 @@ void triangle::intersect(ray r, intersection_record& rec) const
 		float sum = areaAlpha + areaBeta + areaGamma;
 		if (fabsf(1 - sum) < BIGGER_EPSILON)
 		{
-			if (ray_int->distance < rec.distance)
+			if (ray_int->distance < rec.distance && ray_int->distance > 0)
 			{
 				rec.hit = true;
 				rec.distance = ray_int->distance;
