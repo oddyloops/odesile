@@ -123,6 +123,7 @@ vector3 shape::lightup_material(light* light, intersection_record& rec,
 	intersection_record recs;
 	recs.except_id = id;
 	intersect_shapes(rr, recs, shapes);
+	float shadow_mult = 1;
 	if (recs.hit)
 	{
 		float dist_square = recs.distance * recs.distance;
