@@ -54,7 +54,7 @@ vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 a
 	vector3 color = {0,0,0};
 	for (light* l : lights)
 	{
-		color = color + lightup_material(l, rec, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDir, shapes);
+		color = color + lightup_material(l, rec, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDir, shapes, materials);
 	}
 	color = color.clamp();
 	vector3 reflectiveColor = {0,0,0};
@@ -111,7 +111,8 @@ vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 a
 
 
 vector3 shape::lightup_material(light* light, intersection_record& rec,
-	vector3 ambientColor, vector3 diffuseColor, vector3 specularColor, float specularity, vector3 ambientLight,vector3 viewDir, vector<shape*>* shapes)
+	vector3 ambientColor, vector3 diffuseColor, vector3 specularColor, float specularity, vector3 ambientLight,vector3 viewDir, vector<shape*>* shapes,
+	vector<material*>* materials)
 {
 	vector3 reversedLight = -1 * light->get_direction(rec.point);
 	vector3 reversedView = -1 * viewDir;
@@ -128,15 +129,20 @@ vector3 shape::lightup_material(light* light, intersection_record& rec,
 	{
 		float dist_square = recs.distance * recs.distance;
 		if (dist_square < light->light_point_distance(rec.point))
-			return vector3::mult(ambientColor, ambientLight);
+		{
+			shape* shadow_shape = get_shape_by_id(recs.shape_id, shapes);
+			material* shadow_mat = get_material_by_id(shadow_shape->get_material_id(), materials);
+			float shadow_trans = shadow_mat->get_transparency(recs.shape_id,recs.point);
+			shadow_mult = shadow_trans;
+		}
 	}
 
 
-	float diffuseMult = fabsf(vector3::dot(reversedLight , normal));
+	float diffuseMult = shadow_mult * fabsf(vector3::dot(reversedLight , normal));
 
 
 	vector3 halfway = 0.5f * (reversedView + reversedLight);
-	float specularMult = powf( vector3::dot(halfway, normal), specularity);
+	float specularMult =shadow_mult * powf( vector3::dot(halfway, normal), specularity);
 
 	vector3 color = (vector3::mult(ambientColor,ambientLight)) + (  diffuseMult * vector3::mult(lightColor,diffuseColor)
 		+ (specularMult * vector3::mult(lightColor,specularColor)));
