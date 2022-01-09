@@ -126,6 +126,9 @@
     <ClInclude Include="material_type.h">
       <Filter>Header Files\materials</Filter>
     </ClInclude>
+    <ClInclude Include="vector2.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -196,6 +199,9 @@
     </ClCompile>
     <ClCompile Include="spot_light.cpp">
       <Filter>Source Files\lights</Filter>
+    </ClCompile>
+    <ClCompile Include="vector2.cpp">
+      <Filter>Source Files\utility</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

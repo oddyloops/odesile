@@ -4,6 +4,7 @@
 #include "intersection_record.h"
 #include "ray.h"
 #include "material.h"
+#include "vector2.h"
 
 using namespace materials;
 using namespace std;
@@ -38,6 +39,8 @@ namespace shapes
 		virtual void intersect(ray r, intersection_record& rec) const = 0;
 
 		virtual vector3 get_normal(vector3 point) const = 0;
+
+		virtual vector2 get_uv(vector3 point) const = 0;
 
 		virtual vector3 paint(intersection_record& rec, vector<light*>& lights,vector3 ambientLight,
 			vector3 viewDir,int generation, vector<shape*>* shapes,vector<material*>* materials);

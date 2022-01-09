@@ -13,6 +13,8 @@ vertexA(a), vertexB(b), vertexC(c)
 	normal = (ac * ab).normalize();
 	area = simpler_triangle_area(ab, ac);
 	d = vertexA;
+	float acMag = ac.magnitude();
+	u_top = vector3::dot(ab, ac / acMag) / acMag;
 }
 
 float triangle::simpler_triangle_area(vector3 ab, vector3 ac)
@@ -52,9 +54,9 @@ void triangle::intersect(ray r, intersection_record& rec) const
 	if (ray_int->hit)
 	{
 		//computing barymetric area ratios
-		float areaAlpha = simpler_triangle_area(vertexA - vertexB, vertexA - ray_int->point) /area;
+		float areaAlpha = simpler_triangle_area(vertexB - vertexA, ray_int->point - vertexA) /area;
 		float areaBeta = simpler_triangle_area(ray_int->point - vertexB, ray_int->point - vertexC) / area;
-		float areaGamma = simpler_triangle_area(vertexA - ray_int->point, vertexA - vertexC) /area;
+		float areaGamma = simpler_triangle_area(ray_int->point - vertexA, vertexC - vertexA) /area;
 
 		float sum = areaAlpha + areaBeta + areaGamma;
 		if (fabsf(1 - sum) < BIGGER_EPSILON)
@@ -69,6 +71,19 @@ void triangle::intersect(ray r, intersection_record& rec) const
 		}
 	}
 	delete ray_int;
+}
+
+vector2 triangle::get_uv(vector3 point) const
+{
+	//computing barymetric area ratios
+	float areaAlpha = simpler_triangle_area(vertexB - vertexA, point - vertexA) / area;
+	float areaBeta = simpler_triangle_area(point - vertexB, point - vertexC) / area;
+	float areaGamma = simpler_triangle_area(point - vertexA, vertexC - vertexA) / area;
+
+	float u = u_top * areaBeta + areaGamma;
+	float v = areaAlpha + areaGamma;
+
+	return { u,v };
 }
 
 vector3 triangle::get_normal(vector3 point) const

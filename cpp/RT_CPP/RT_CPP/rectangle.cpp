@@ -6,15 +6,23 @@ using namespace shapes;
 rectangle::rectangle(int id,int mid, vector3 a, vector3 b, vector3 c, vector3 d)
 	: triangle(id,mid,a,b,c), vertexD(d)
 {
-	vcvb = vertexC - vertexB;
-	vdvc = vertexD - vertexC;
-	float vcvbMag = vcvb.magnitude();
-	float vdvcMag = vdvc.magnitude();
-	area = vcvbMag * vdvcMag;
-	vcvb = vcvb / vcvbMag;
-	vdvc = vdvc / vdvcMag;
+    vavd = vertexD - vertexA;
+    vavb = vertexB - vertexA;
+    vavdMag = vavd.magnitude();
+    vavbMag = vavb.magnitude();
+	area = vavdMag * vavbMag;
+    vavd = vavd / vavdMag;
+    vavb = vavb / vavbMag;
 }
 
+
+vector2 rectangle::get_uv(vector3 point) const
+{
+    vector3 line = point - vertexA;
+    float u = vector3::dot(line, vavb) / vavbMag;
+    float v = vector3::dot(line, vavd) / vavdMag;
+    return { u,v };
+}
 
 void rectangle::intersect(ray r, intersection_record& rec) const
 {

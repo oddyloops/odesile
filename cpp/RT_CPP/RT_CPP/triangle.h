@@ -11,7 +11,7 @@ namespace shapes
 		vector3 ab;
 		vector3 bc;
 		vector3 ac;
-
+		float u_top;
 
 		
 	protected:
@@ -28,5 +28,6 @@ namespace shapes
 		intersection_record* ray_plane_intersection(ray r) const;
 		vector3 get_normal(vector3 point) const;
 		void intersect(ray r, intersection_record& rec) const;
+		vector2 get_uv(vector3 point) const;
 	};
 }
