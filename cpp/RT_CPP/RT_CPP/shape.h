@@ -17,7 +17,7 @@ namespace shapes
 	private:
 		vector3 lightup_material(light* light, intersection_record& rec,
 			vector3 ambientColor,vector3 diffuseColor, vector3 specularColor, float specularity, vector3 ambientLight,
-			vector3 viewDir, vector<shape*>* shapes);
+			vector3 viewDir, vector<shape*>* shapes, vector<material*>* materials);
 
 		void intersect_shapes(ray r, intersection_record& rec, vector<shape*>* shapes);
 

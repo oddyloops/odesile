@@ -79,7 +79,7 @@
         "specularities": [ 200.0 ],
         "reflectivities": [ 0 ],
         "refractiveIndices": [ 1.7 ],
-        "transparencies": [ 0.3 ]
+        "transparencies": [ 0.2 ]
       }
     ]
   },
