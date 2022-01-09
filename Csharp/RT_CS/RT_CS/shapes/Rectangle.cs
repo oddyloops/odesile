@@ -9,20 +9,29 @@ namespace RT_CS.shapes
 
     public class Rectangle : Triangle
     {
-        private Vector3 vertexD,vdva,vdvc;
+        private Vector3 vertexD, vavd, vavb;
+        float vavdMag, vavbMag;
 
         public Rectangle(int id, int mid, Vector3 v1, Vector3 v2, Vector3 v3, Vector3 v4) : base(id, mid, v1, v2, v3)
         {
             vertexD = v4;
-          
-            vdva = v4 - v1;
-            vdvc = v4 - v3;
-            float vdvaMag = vdva.Magnitude();
-            float vdvcMag = vdvc.Magnitude();
-            area = vdvaMag * vdvcMag;
+ 
+            vavd = v1 - v4;
+            vavb = v1 - v2;
+            vavdMag = vavd.Magnitude();
+            vavbMag = vavb.Magnitude();
+            area = vavbMag * vavdMag;
             normal = ((v3 - v4) * (v1 - v4)).Normalize();
-            vdva /= vdvaMag;
-            vdvc/=vdvcMag;
+            vavd /= vavdMag;
+            vavb/=vavbMag;
+          
+        }
+
+        public override Vector2 GetUV(Vector3 pt)
+        {
+            Vector3 line = vertexA - pt;
+            return new Vector2 { x = Vector3.Dot(line, vavb), y = Vector3.Dot(line, vavd) };
+
         }
 
         public override void Intersect(Ray r, IntersectionRecord intersection)

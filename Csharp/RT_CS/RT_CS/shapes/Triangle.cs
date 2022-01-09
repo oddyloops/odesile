@@ -13,6 +13,7 @@ namespace RT_CS.shapes
         protected Vector3 D;
         private Vector3 ab,ac,bc;
         protected float area;
+        private float uTop;
 
         protected const float BIGGER_EPSILON = 0.000001f;
 
@@ -33,6 +34,8 @@ namespace RT_CS.shapes
             normal = ((v3 - v1) * (v2 - v1)).Normalize();
             D = v1;
             area = SimplerTriangleArea(ab,ac);
+            float acMag = ac.Magnitude();
+            uTop = Vector3.Dot(ab, ac / acMag) / acMag;
         }
         public override Vector3 GetNormal(Vector3 point)
         {
@@ -59,6 +62,15 @@ namespace RT_CS.shapes
             }
         }
 
+        public override Vector2 GetUV(Vector3 pt)
+        {
+            float areaAlpha = SimplerTriangleArea(vertexB - vertexA, pt - vertexA) / area;
+            float areaBeta = SimplerTriangleArea(pt - vertexB, pt - vertexC) / area;
+            float areaGamma = SimplerTriangleArea(pt - vertexA, vertexC - vertexA) / area;
+
+            return new Vector2 { x = (uTop * areaBeta) + areaGamma, y = areaAlpha + areaGamma };
+        }
+
         public override void Intersect(Ray r, IntersectionRecord intersection)
         {
             if (intersection.ExceptId == sid)
@@ -68,9 +80,9 @@ namespace RT_CS.shapes
             IntersectionRecord inter = RayPlaneIntersection(r);
             if (inter.Hit)
             {
-                float areaAlpha = SimplerTriangleArea(vertexA - vertexB, vertexA - inter.Point)/area;
-                float areaBeta = SimplerTriangleArea(inter.Point - vertexB, inter.Point - vertexC)/area;
-                float areaGamma = SimplerTriangleArea(vertexA - inter.Point, vertexA - vertexC)/area;
+                float areaAlpha = SimplerTriangleArea(vertexB - vertexA, inter.Point - vertexA) / area;
+                float areaBeta = SimplerTriangleArea(inter.Point - vertexB, inter.Point - vertexC) / area;
+                float areaGamma = SimplerTriangleArea(inter.Point - vertexA, vertexC - vertexA) / area;
                 float sum = areaAlpha + areaBeta + areaGamma;
 
 

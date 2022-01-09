@@ -39,6 +39,7 @@ namespace RT_CS.shapes
        
 
         public abstract Vector3 GetNormal(Vector3 point);
+        public abstract Vector2 GetUV(Vector3 pt);
         public abstract void Intersect(Ray r,IntersectionRecord intersection);
         public virtual Vector3 Paint(IntersectionRecord record, List<Light> lighting, Vector3 ambientLight, Vector3 viewDirection,
             int generation,List<Shape> shapes, List<Material> materials)
