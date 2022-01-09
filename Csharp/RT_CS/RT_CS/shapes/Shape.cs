@@ -74,7 +74,7 @@ namespace RT_CS.shapes
             color.z = 0;
 
             foreach (Light lit in lighting)
-                color += LightupMaterial(lit, record, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDirection,shapes);
+                color += LightupMaterial(lit, record, ambientColor, diffuseColor, specularColor, specularity, ambientLight, viewDirection,shapes, materials);
 
             color.x = MathF.Max(0,MathF.Min(1, color.x));
             color.y = MathF.Max(0,MathF.Min(1, color.y));
@@ -142,26 +142,57 @@ namespace RT_CS.shapes
             return color;
         }
 
-        private Vector3 LightupMaterial (Light lit, IntersectionRecord record, Vector3 ambientColor, Vector3 diffuseColor, Vector3 SpecularColor, float specularity, Vector3 ambientLight, Vector3 viewDirection, List<Shape> shapes)
+        private Vector3 LightupMaterial (Light lit, IntersectionRecord record, Vector3 ambientColor, Vector3 diffuseColor, Vector3 SpecularColor, float specularity, Vector3 ambientLight, Vector3 viewDirection, List<Shape> shapes, List<Material> materials)
         {
             Vector3 reverseLight = -1 * lit.GetDirection(record.Point);
             Ray shadowRay = new Ray() {  posit = record.Point, direct = reverseLight };
             IntersectionRecord shadowRec = new IntersectionRecord() { ExceptId = sid };
             IntersectShapes(shadowRay, shadowRec, shapes);
-            if(shadowRec.Hit)
+           
+            Shape GetShapeById(int id)
             {
-                float distSq = shadowRec.Distance * shadowRec.Distance;
-                if (distSq < lit.LightPointDistance(record.Point))
+                foreach (Shape shape in shapes)
                 {
-                    return Vector3.Mult(ambientLight, ambientColor);
+                    if (id == shape.GetId())
+                        return shape;
                 }
+                return null;
+            }
+
+            Material GetMaterialById(int id)
+            {
+                foreach (Material material in materials)
+                {
+                    if (id == material.GetId())
+                        return material;
+                }
+                return null;
             }
             Vector3 norm = GetNormal(record.Point);
-            
+
             Vector3 halfway = (viewDirection + reverseLight) * 0.5f;
             Vector3 lightColor = lit.GetColor(record.Point);
             float specularMult = MathF.Pow(Vector3.Dot(norm, halfway), specularity);
-            float diffuseMult = MathF.Abs(Vector3.Dot(reverseLight, norm)); 
+            float diffuseMult = MathF.Abs(Vector3.Dot(reverseLight, norm));
+            float shadowMult;
+            if (shadowRec.Hit)
+            {
+                float distSq = shadowRec.Distance * shadowRec.Distance;
+          
+
+
+                if (distSq < lit.LightPointDistance(record.Point))
+                {
+                    int newShapeId = shadowRec.ShapeId;
+                    Shape newShape = GetShapeById(newShapeId);
+                    Material newMaterial = GetMaterialById(newShape.GetMid());
+                    float newTransparency = newMaterial.GetTransparency(newShapeId, shadowRec.Point);
+                    shadowMult = newTransparency;
+                    diffuseMult *= shadowMult;
+                    specularMult *= shadowMult;
+
+                }
+            }
 
             return Vector3.Mult(ambientLight,ambientColor) + diffuseMult * Vector3.Mult(lightColor ,diffuseColor) + specularMult * Vector3.Mult(lightColor, SpecularColor);
         }
