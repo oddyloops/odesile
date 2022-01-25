@@ -1,13 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "4qbN0U3wtAOyFD17K5W0IzjbD+gzNAkcDC3sX5rvY1UM3/Lje6fuVnPtV2e0KW0LP5QTjcP7HsGNhcHc4u8qtQ==",
+  "dgSpecHash": "eYu+G5dqqycWw6wdEOcX+LEzMsLdmwovcpQyDEM1APwHO7mpTLsZECsWqCLvhO7JyJRfQc3LuK+clXd5YKEoOA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\HP\\Documents\\GitHub\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj",
+  "projectFilePath": "C:\\Users\\oddyl\\source\\repos\\odesile\\Csharp\\RT_CS\\RT_CS\\RT_CS.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\HP\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
-    "C:\\Users\\HP\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
-    "C:\\Users\\HP\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512",
-    "C:\\Users\\HP\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.21\\microsoft.netcore.app.host.win-x64.3.1.21.nupkg.sha512"
+    "C:\\Users\\oddyl\\.nuget\\packages\\microsoft.win32.systemevents\\6.0.0\\microsoft.win32.systemevents.6.0.0.nupkg.sha512",
+    "C:\\Users\\oddyl\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\oddyl\\.nuget\\packages\\system.drawing.common\\6.0.0\\system.drawing.common.6.0.0.nupkg.sha512"
   ],
   "logs": []
 }

@@ -59,6 +59,14 @@ namespace RT_CS.shapes
             }
             
         }
+
+        public override Vector2 GetUV(Vector3 pt)
+        {
+            Vector3 normal = GetNormal(pt);
+            float u = MathF.Atan2(normal.x, normal.z) / (2 * MathF.PI) + 0.5F;
+            float v = normal.y * 0.5F + 0.5F;
+            return new Vector2() {  x = u, y = v };
+        }
     }
 
 }

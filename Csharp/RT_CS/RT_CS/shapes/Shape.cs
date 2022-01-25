@@ -64,10 +64,11 @@ namespace RT_CS.shapes
                 return null;
             }
             Material mat = GetMaterialById(materialId);
-            Vector3 ambientColor = mat.GetAmbientColor(sid, record.Point);
-            Vector3 diffuseColor = mat.GetDiffuseColor(sid, record.Point);
-            Vector3 specularColor = mat.GetSpecularColor(sid, record.Point);
-            float specularity = mat.GetSpecularity(sid, record.Point);
+            Vector2 uv = GetUV(record.Point);
+            Vector3 ambientColor = mat.GetAmbientColor(uv);
+            Vector3 diffuseColor = mat.GetDiffuseColor(uv);
+            Vector3 specularColor = mat.GetSpecularColor(uv);
+            float specularity = mat.GetSpecularity(uv);
 
             Vector3 color;
             color.x = 0;
@@ -94,9 +95,9 @@ namespace RT_CS.shapes
 
             if (generation > 0)
             {
-                float reflect = mat.GetReflectivity(sid, record.Point);
-                float transparent = mat.GetTransparency(sid, record.Point);
-                float refractiveIndex = mat.GetRefractiveIndex(sid, record.Point);
+                float reflect = mat.GetReflectivity(uv);
+                float transparent = mat.GetTransparency(uv);
+                float refractiveIndex = mat.GetRefractiveIndex(uv);
                 Vector3 normal = GetNormal(record.Point);
 
                 if (reflect > 0)
@@ -138,7 +139,7 @@ namespace RT_CS.shapes
                 }
             }
             if (generation > 0)
-                color = ((color * (1 - mat.GetReflectivity(sid, record.Point) - mat.GetTransparency(sid, record.Point))) + (mat.GetReflectivity(sid, record.Point) * reflectivecolor) + (mat.GetTransparency(sid, record.Point) * refractivecolor));
+                color = ((color * (1 - mat.GetReflectivity(uv) - mat.GetTransparency(uv))) + (mat.GetReflectivity(uv) * reflectivecolor) + (mat.GetTransparency(uv) * refractivecolor));
 
             return color;
         }
@@ -187,7 +188,8 @@ namespace RT_CS.shapes
                     int newShapeId = shadowRec.ShapeId;
                     Shape newShape = GetShapeById(newShapeId);
                     Material newMaterial = GetMaterialById(newShape.GetMid());
-                    float newTransparency = newMaterial.GetTransparency(newShapeId, shadowRec.Point);
+                    Vector2 newUv = newShape.GetUV(shadowRec.Point);
+                    float newTransparency = newMaterial.GetTransparency(newUv);
                     shadowMult = newTransparency;
                     diffuseMult *= shadowMult;
                     specularMult *= shadowMult;

@@ -1,21 +1,25 @@
-﻿using RT_CS.shapes;
-using RT_CS.utility;
+﻿using RT_CS.utility;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace RT_CS.Materials
 {
-    public class ColorMaterial : Material
+    public class TextureMaterial : Material
     {
-        private List<Vector3> ambientColors, diffuseColors, specularColors;
-   
-        public ColorMaterial(int mid, List<float> spcs, MaterialType mt, List<float> refl, List<float> trans, List<float> refr, List<Vector3> ac,List<Vector3> dc, List<Vector3> sc) : base(mid,spcs,mt,refl,trans,refr)
+
+        private List<Vector3> ambientColors, specularColors;
+        private List<Texture> diffuseColors;
+
+        public TextureMaterial(int mid, List<float> spcs, MaterialType mt, List<float> refl, List<float> trans, List<float> refr,
+            List<Vector3> ac, List<Texture> dc, List<Vector3> sc) : base(mid, spcs, mt, refl, trans, refr)
         {
             ambientColors = ac;
             diffuseColors = dc;
             specularColors = sc;
+
         }
+
         public override Vector3 GetAmbientColor(Vector2 uv)
         {
             return ambientColors[0];
@@ -23,7 +27,7 @@ namespace RT_CS.Materials
 
         public override Vector3 GetDiffuseColor(Vector2 uv)
         {
-            return diffuseColors[0];
+            return diffuseColors[0].GetPixel(uv);
         }
 
         public override Vector3 GetSpecularColor(Vector2 uv)
@@ -46,7 +50,7 @@ namespace RT_CS.Materials
         }
         public override float GetRefractiveIndex(Vector2 uv)
         {
-            return refractiveIndices[0];    
+            return refractiveIndices[0];
         }
     }
 }

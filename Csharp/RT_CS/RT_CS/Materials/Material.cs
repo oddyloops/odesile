@@ -26,13 +26,13 @@ namespace RT_CS.Materials
             refractiveIndices = refr;
         }
 
-        public abstract Vector3 GetAmbientColor(int sid, Vector3 point);
-        public abstract Vector3 GetDiffuseColor(int sid, Vector3 point);
-        public abstract Vector3 GetSpecularColor(int sid, Vector3 point);
-        public abstract float GetSpecularity(int sid, Vector3 point);
-        public abstract float GetReflectivity(int sid, Vector3 point);
-        public abstract float GetTransparency(int sid, Vector3 point);
-        public abstract float GetRefractiveIndex(int sid, Vector3 point);
+        public abstract Vector3 GetAmbientColor(Vector2 uv);
+        public abstract Vector3 GetDiffuseColor(Vector2 uv);
+        public abstract Vector3 GetSpecularColor(Vector2 uv);
+        public abstract float GetSpecularity(Vector2 uv);
+        public abstract float GetReflectivity(Vector2 uv);
+        public abstract float GetTransparency(Vector2 uv);
+        public abstract float GetRefractiveIndex(Vector2 uv);
 
 
     }
