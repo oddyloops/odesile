@@ -2,6 +2,7 @@
 #include "ray.h"
 #include "operators.h"
 #include <math.h>
+# define M_PI           3.14159265358979323846 
 #include <cfloat>
 using namespace shapes;
 
@@ -49,4 +50,12 @@ void sphere:: intersect(ray r, intersection_record& rec)  const
 vector3 sphere::get_normal(vector3 point) const
 {
 	return (point - center).normalize();
+}
+
+vector2 sphere::get_uv(vector3 point) const
+{
+	vector3 normal = get_normal(point);
+	float u = (atan2f(normal.x, normal.z) / 2 * M_PI) + 0.5;
+	float v = normal.y * 0.5 + 0.5;
+	return { u,v };
 }

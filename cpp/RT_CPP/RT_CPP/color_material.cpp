@@ -10,35 +10,35 @@ color_material::color_material(int mid, material_types tp, vector<vector3> acs,
 
 }
 
-vector3 color_material::get_ambient_color(int sid, vector3 v) const
+vector3 color_material::get_ambient_color(vector2 uv) const
 {
 	return ambient_colors[0];
 }
 
-vector3 color_material::get_diffuse_color(int sid, vector3 v) const
+vector3 color_material::get_diffuse_color(vector2 uv) const
 {
 	return diffuse_colors[0];
 }
-vector3 color_material::get_specular_color(int sid, vector3 v) const
+vector3 color_material::get_specular_color(vector2 uv) const
 {
 	return specular_colors[0];
 }
-float color_material::get_specularity(int sid, vector3 v) const
+float color_material::get_specularity(vector2 uv) const
 {
 	return specularities[0];
 }
 
-float color_material::get_reflectivity(int sid, vector3 v) const
+float color_material::get_reflectivity(vector2 uv) const
 {
 	return reflectivities[0];
 }
 
-float color_material::get_transparency(int sid, vector3 v) const
+float color_material::get_transparency(vector2 uv) const
 {
 	return transparencies[0];
 }
 
-float color_material::get_refractive_index(int sid, vector3 v) const
+float color_material::get_refractive_index(vector2 uv) const
 {
 	return refractiveIndices[0];
 }

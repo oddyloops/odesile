@@ -16,6 +16,7 @@ namespace shapes
 		sphere(int id,int mid, vector3 c, float r);
 		void intersect(ray r, intersection_record& rec) const;
 		vector3 get_normal(vector3 point) const;
+		vector2 get_uv(vector3 point) const;
 	};
 
 	

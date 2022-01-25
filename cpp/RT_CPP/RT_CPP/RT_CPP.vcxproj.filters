@@ -129,6 +129,12 @@
     <ClInclude Include="vector2.h">
       <Filter>Header Files\utility</Filter>
     </ClInclude>
+    <ClInclude Include="texture.h">
+      <Filter>Header Files\utility</Filter>
+    </ClInclude>
+    <ClInclude Include="texture_material.h">
+      <Filter>Header Files\materials</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="scene.cpp">
@@ -202,6 +208,12 @@
     </ClCompile>
     <ClCompile Include="vector2.cpp">
       <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="texture.cpp">
+      <Filter>Source Files\utility</Filter>
+    </ClCompile>
+    <ClCompile Include="texture_material.cpp">
+      <Filter>Source Files\materials</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
