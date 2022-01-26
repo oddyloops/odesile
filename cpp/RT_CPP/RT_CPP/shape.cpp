@@ -46,10 +46,11 @@ shape* shape::get_shape_by_id(int id, vector<shape*>* shapes)
 vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 ambientLight,vector3 viewDir,int generation, vector<shape*>* shapes, vector<material*>* materials)
 {
 	material* mat = get_material_by_id(material_id,materials);
-	vector3 ambientColor = mat->get_ambient_color(id, rec.point);
-	vector3 diffuseColor = mat->get_diffuse_color(id, rec.point);
-	vector3 specularColor = mat->get_specular_color(id, rec.point);
-	float specularity = mat->get_specularity(id, rec.point);
+	vector2 uv = get_uv(rec.point);
+	vector3 ambientColor = mat->get_ambient_color(uv);
+	vector3 diffuseColor = mat->get_diffuse_color(uv);
+	vector3 specularColor = mat->get_specular_color(uv);
+	float specularity = mat->get_specularity(uv);
 
 	vector3 color = {0,0,0};
 	for (light* l : lights)
@@ -63,9 +64,9 @@ vector3 shape::paint(intersection_record& rec, vector<light*>& lights, vector3 a
 
 	if (generation > 0)
 	{
-		float reflectivity = mat->get_reflectivity(id, rec.point);
-		float transparency = mat->get_transparency(id, rec.point);
-		float refractIndex = mat->get_refractive_index(id, rec.point);
+		float reflectivity = mat->get_reflectivity(uv);
+		float transparency = mat->get_transparency(uv);
+		float refractIndex = mat->get_refractive_index(uv);
 		vector3 normal = get_normal(rec.point);
 		if (reflectivity > 0)
 		{
@@ -130,9 +131,10 @@ vector3 shape::lightup_material(light* light, intersection_record& rec,
 		float dist_square = recs.distance * recs.distance;
 		if (dist_square < light->light_point_distance(rec.point))
 		{
+			vector2 uv2 = get_uv(recs.point);
 			shape* shadow_shape = get_shape_by_id(recs.shape_id, shapes);
 			material* shadow_mat = get_material_by_id(shadow_shape->get_material_id(), materials);
-			float shadow_trans = shadow_mat->get_transparency(recs.shape_id,recs.point);
+			float shadow_trans = shadow_mat->get_transparency(uv2);
 			shadow_mult = shadow_trans;
 		}
 	}

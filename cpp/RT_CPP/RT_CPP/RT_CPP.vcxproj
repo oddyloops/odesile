@@ -145,6 +145,7 @@
     <ClInclude Include="color_material.h" />
     <ClInclude Include="database_loader.h" />
     <ClInclude Include="directional_light.h" />
+    <ClInclude Include="texture.h" />
     <ClInclude Include="image_generator.h" />
     <ClInclude Include="intersection_record.h" />
     <ClInclude Include="light.h" />
@@ -162,6 +163,7 @@
     <ClInclude Include="shape.h" />
     <ClInclude Include="sphere.h" />
     <ClInclude Include="spot_light.h" />
+    <ClInclude Include="texture_material.h" />
     <ClInclude Include="triangle.h" />
     <ClInclude Include="vector2.h" />
     <ClInclude Include="vector3.h" />
@@ -186,6 +188,8 @@
     <ClCompile Include="orthographic.cpp" />
     <ClCompile Include="operators.cpp" />
     <ClCompile Include="intersection_record.cpp" />
+    <ClCompile Include="texture_material.cpp" />
+    <ClCompile Include="texture.cpp" />
     <ClCompile Include="sphere.cpp" />
     <ClCompile Include="spot_light.cpp" />
     <ClCompile Include="triangle.cpp" />
