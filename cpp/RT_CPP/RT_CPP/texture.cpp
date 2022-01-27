@@ -8,6 +8,15 @@ texture::texture(vector3** pixels, int width, int height) : pixels(pixels), widt
 
 }
 
+texture::~texture()
+{
+	for (int i = 0; i < height; i++)
+	{
+		delete pixels[i];
+	}
+	delete pixels;
+}
+
 vector3 texture::get_pixel(vector2 uv)
 {
 	int x = (int)fmaxf(0, roundf(uv.x * width) - 1);

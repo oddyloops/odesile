@@ -1,6 +1,7 @@
 #pragma once
 #include "shape.h"
 #include "vector3.h"
+#include "vector2.h"
 
 using namespace utility;
 

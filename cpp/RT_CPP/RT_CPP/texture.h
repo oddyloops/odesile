@@ -15,5 +15,6 @@ namespace utility
 	public:
 		texture(vector3** pixels, int width, int height);
 		vector3 get_pixel(vector2 uv);
+		~texture();
 	};
 }

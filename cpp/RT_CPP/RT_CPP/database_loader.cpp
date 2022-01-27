@@ -1,9 +1,11 @@
 #include "database_loader.h"
 #include "orthographic.h"
 #include "perspective.h"
+#include "io/EasyBMP.h"
 #include <fstream>
 #include <iostream>
 #include <algorithm>
+
 using namespace utility::io;
 
 vector<string> split(string s, string delimiter) {
@@ -26,6 +28,34 @@ material_types database_loader::int_to_enum(int type)
 	return static_cast<material_types>(type);
 }
 
+vector<texture*> database_loader::load_textures(json const& j)
+{
+	vector<texture*> textures;
+	for (json jt : j)
+	{
+		textures.push_back(load_texture(jt));
+	}
+	return textures;
+}
+
+texture* database_loader::load_texture(string file)
+{
+	string folder = "scene_files/textures/";
+	string full_path = folder + file;
+	BMP input;
+	input.ReadFromFile(full_path.c_str());
+	vector3** pixels = new vector3 * [input.TellHeight()];
+	for (int y = 0; y < input.TellHeight(); y++)
+	{
+		pixels[y] = new vector3[input.TellWidth()];
+		for (int x = 0; x < input.TellWidth(); x++)
+		{
+			pixels[y][x] = { input(x,y)->Red / 255.0f, input(x,y)->Green / 255.0f , input(x,y)->Blue / 255.0f };
+		}
+	}
+	texture* tex = new texture(pixels, input.TellWidth(), input.TellHeight());
+	return tex;
+}
 
 vector<vector3> database_loader::parse_vector3_array(json const& j)
 {
@@ -211,13 +241,39 @@ vector<material*>* database_loader::load_materials(json const& j)
 	vector<color_material*>* color_mats = load_color_materials(j["ColorMaterials"]);
 	copy(color_mats->begin(), color_mats->end(), back_inserter(*mats));
 	delete color_mats;
+	vector<texture_material*>* texture_mats = load_texture_materials(j["TextureMaterials"]);
+	copy(texture_mats->begin(), texture_mats->end(), back_inserter(*mats));
+	delete texture_mats;
 	return mats;
 }
+
+
 
 color_material* database_loader::load_color_material(json const& j)
 {
 	color_material* mat = new color_material(j["id"], int_to_enum(j["type"]),
 		parse_vector3_array(j["ambientColors"]), parse_vector3_array(j["diffuseColors"]),
+		parse_vector3_array(j["specularColors"]), parse_float_array(j["specularities"]),
+		parse_float_array(j["reflectivities"]), parse_float_array(j["transparencies"]),
+		parse_float_array(j["refractiveIndices"]));
+	return mat;
+}
+
+
+vector<texture_material*>* database_loader::load_texture_materials(json const& j)
+{
+	vector<texture_material*>* cms = new vector<texture_material*>;
+	for (json cm : j)
+	{
+		cms->push_back(load_texture_material(cm));
+	}
+	return cms;
+}
+
+texture_material* database_loader::load_texture_material(json const& j)
+{
+	texture_material* mat = new texture_material(j["id"], int_to_enum(j["type"]),
+		parse_vector3_array(j["ambientColors"]), load_textures(j["diffuseColors"]),
 		parse_vector3_array(j["specularColors"]), parse_float_array(j["specularities"]),
 		parse_float_array(j["reflectivities"]), parse_float_array(j["transparencies"]),
 		parse_float_array(j["refractiveIndices"]));

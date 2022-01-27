@@ -5,6 +5,7 @@
 #include "rectangle.h"
 #include "triangle.h"
 #include "color_material.h"
+#include "texture_material.h"
 #include "directional_light.h"
 #include "point_light.h"
 #include "spot_light.h"
@@ -28,6 +29,8 @@ namespace utility
 			static material_types int_to_enum(int type);
 			static vector<vector3> parse_vector3_array(json const& j);
 			static vector<float> parse_float_array(json const& j);
+			static texture* load_texture(string file);
+			static vector<texture*> load_textures(json const& j);
 			static scene* load_scene(json const& j);
 			static camera* load_camera(json const& j, int width, int height);
 
@@ -42,6 +45,8 @@ namespace utility
 			static vector<material*>* load_materials(json const& j);
 			static vector<color_material*>* load_color_materials(json const& j);
 			static color_material* load_color_material(json const& j);
+			static vector<texture_material*>* load_texture_materials(json const& j);
+			static texture_material* load_texture_material(json const& j);
 
 			static vector<light*>* load_lights(json const& j);
 			static vector<directional_light*>* load_directional_lights(json const& j);

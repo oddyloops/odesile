@@ -1,0 +1,121 @@
+{
+  "Scene": {
+    "height": 1080,
+    "width": 1920,
+    "background": "0,0,0",
+    "ambientLight" : "0.1,0.1,0.1"
+  },
+  "Camera": {
+    "isOrthographic": false,
+    "focalLength": 2,
+    "farPlane": 20,
+    "upDirection": "0,1,0",
+    "position": "-5,0,-5",
+    "target": "0,0,0",
+    "fieldOfView": 0.785
+  },
+  "Shapes": {
+    "Spheres": [
+      {
+        "id": 5,
+        "radius": 1.5,
+        "center": "8,0,0",
+        "materialId" :  1
+      }
+    ],
+    "Triangles": [
+      {
+        "id": 1,
+        "vertexA": "5,-1.5,-1.5",
+        "vertexB": "5,1.5,0",
+        "vertexC": "5,-1.5,1.5",
+        "materialId" :  2
+      },
+
+      {
+        "id": 4,
+        "vertexA": "3,-1.5,-1.5",
+        "vertexB": "3,1.5,0",
+        "vertexC": "3,-1.5,1.5",
+        "materialId": 3
+      }
+
+    ],
+    "Rectangles": []
+  },
+
+  "Materials": {
+    "ColorMaterials": [
+      
+
+      {
+        "id": 3,
+        "type": 0,
+        "ambientColors": [ "0,0,0" ],
+        "diffuseColors": [ "0,0,1" ],
+        "specularColors": [ "0,0,1" ],
+        "specularities": [ 200.0 ],
+        "reflectivities": [ 0 ],
+        "refractiveIndices": [ 1.7 ],
+        "transparencies": [ 0.2 ]
+      }
+    ],
+    "TextureMaterials": [
+      
+        {
+          "id": 1,
+          "type": 0,
+          "ambientColors": [ "1,0,0" ],
+          "diffuseColors": [ "market.png" ],
+          "specularColors": [ "0.7,1,0.8" ],
+          "specularities": [ 15.0 ],
+          "reflectivities": [ 0.5 ],
+          "refractiveIndices": [ 1 ],
+          "transparencies": [ 0.2 ]
+        },
+
+        {
+          "id": 2,
+          "type": 0,
+          "ambientColors": [ "0,0.2,0.2" ],
+          "diffuseColors": [ "stock.png" ],
+          "specularColors": [ "1,1,1" ],
+          "specularities": [ 40.0 ],
+          "reflectivities": [ 0 ],
+          "refractiveIndices": [ 1 ],
+          "transparencies": [ 0 ]
+        }
+      
+    ]
+
+
+  },
+  "Lights": {
+    "DirectionalLights": [
+      {
+        "id": 1,
+        "Color": "1,1,1",
+        "Direction": "0,-1,1"
+      }
+    ],
+    "PointLights": [
+      {
+        "id": 2,
+        "Color": "1,1,1",
+        "Origin" :  "2.9,0,0"
+      }
+    ],
+
+    "SpotLights": [
+      {
+        "id": 3,
+        "Color": "1,1,1",
+        "Direction": "1,0,0",
+        "Origin": "-1.5,0,0",
+        "FallOff" :  5,
+        "InnerAngle": 0.524,
+        "OuterAngle" :  0.65
+      }
+    ]
+  }
+}
