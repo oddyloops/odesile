@@ -11,7 +11,6 @@ using namespace std;
 using namespace lights;
 using namespace cameras;
 namespace shapes
-
 {
 	class shape
 	{
