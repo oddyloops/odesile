@@ -7,8 +7,10 @@ using RT_CS.sceneObjects;
 using RT_CS.shapes;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Text;
+using Rectangle = RT_CS.shapes.Rectangle;
 
 namespace RT_CS.utility.IO
 {
@@ -71,6 +73,42 @@ namespace RT_CS.utility.IO
                 floats.Add((float)obj);
             }
             return floats;
+        }
+
+        private static Texture LoadTexture(string file)
+        {
+            string fullPath = Path.Join(Directory.GetParent(Environment.CurrentDirectory).Parent.Parent.FullName,
+                "scene_files/textures", file);
+            using Stream imgStr = File.Open(fullPath, FileMode.Open);
+            Image img = Image.FromStream(imgStr);
+            Bitmap bitmap = new Bitmap(img);
+            Vector3[,] pixels = new Vector3[img.Height,img.Width];
+            for(int y = 0; y < img.Height; y++)
+            {
+                for(int x = 0; x < img.Width; x++)
+                {
+                    Color c = bitmap.GetPixel(x, y);
+                    pixels[y, x] = new Vector3()
+                    {
+                        x = c.R / 255.0f,
+                        y = c.G / 255.0f,
+                        z = c.B / 255.0f
+                    };
+                }
+            }
+            return new Texture(pixels, img.Width, img.Height);
+
+        }
+
+
+        private static List<Texture> LoadTextures(JArray jArray)
+        {
+            List<Texture> list = new List<Texture>();
+            foreach(JObject texFiles in jArray)
+            {
+                list.Add(LoadTexture((string)texFiles));
+            }
+            return list;
         }
         private static void LoadScene(JObject sceneDict, SceneDatabase db)
         {
@@ -170,6 +208,7 @@ namespace RT_CS.utility.IO
         {
             db.MyMaterials = new List<Material>();
             LoadColorMaterials((JArray)materials["ColorMaterials"], db);
+            LoadTextureMaterials((JArray)materials["TextureMaterials"],db);
         }
 
         private static void LoadColorMaterials(JArray colorMatArr, SceneDatabase db)
@@ -189,6 +228,22 @@ namespace RT_CS.utility.IO
             db.MyMaterials.Add(material);
         }
 
+        private static void LoadTextureMaterials(JArray textureMatArr, SceneDatabase db)
+        {
+            foreach (JObject textureMat in textureMatArr)
+            {
+                LoadTextureMaterial(textureMat, db);
+            }
+        }
+
+        private static void LoadTextureMaterial(JObject textureMatDict, SceneDatabase db)
+        {
+            TextureMaterial material = new TextureMaterial((int)textureMatDict["id"],
+                ParseFloats((JArray)textureMatDict["specularities"]), (MaterialType)(int)textureMatDict["type"], ParseFloats((JArray)textureMatDict["reflectivities"]),
+                ParseFloats((JArray)textureMatDict["transparencies"]), ParseFloats((JArray)textureMatDict["refractiveIndices"]), ParseVector3s((JArray)textureMatDict["ambientColors"]), LoadTextures((JArray)textureMatDict["diffuseColors"]),
+                ParseVector3s((JArray)textureMatDict["specularColors"]));
+            db.MyMaterials.Add(material);
+        }
         private static void LoadLights(JObject lightDict, SceneDatabase db)
         {
             db.MyLights = new List<Light>();
