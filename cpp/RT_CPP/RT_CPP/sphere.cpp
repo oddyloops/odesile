@@ -55,7 +55,7 @@ vector3 sphere::get_normal(vector3 point) const
 vector2 sphere::get_uv(vector3 point) const
 {
 	vector3 normal = get_normal(point);
-	float u = (atan2f(normal.x, normal.z) / 2 * M_PI) + 0.5;
-	float v = normal.y * 0.5 + 0.5;
+	float u = (atan2f(normal.x, normal.z) / (2 * M_PI)) + 0.5;
+	float v = 0.5 - (asinf(normal.y) / M_PI);
 	return { u,v };
 }

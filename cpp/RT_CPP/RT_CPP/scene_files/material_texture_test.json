@@ -65,11 +65,11 @@
         {
           "id": 1,
           "type": 0,
-          "ambientColors": [ "1,0,0" ],
+          "ambientColors": [ "0,0,0" ],
           "diffuseColors": [ "bb.bmp" ],
-          "specularColors": [ "0.7,1,0.8" ],
-          "specularities": [ 15.0 ],
-          "reflectivities": [ 0.5 ],
+          "specularColors": [ "1,1,1" ],
+          "specularities": [ 20.0 ],
+          "reflectivities": [ 0.1 ],
           "refractiveIndices": [ 1 ],
           "transparencies": [ 0.2 ]
         },
@@ -81,7 +81,7 @@
           "diffuseColors": [ "road.bmp" ],
           "specularColors": [ "1,1,1" ],
           "specularities": [ 40.0 ],
-          "reflectivities": [ 0 ],
+          "reflectivities": [ 0.1 ],
           "refractiveIndices": [ 1 ],
           "transparencies": [ 0 ]
         }
