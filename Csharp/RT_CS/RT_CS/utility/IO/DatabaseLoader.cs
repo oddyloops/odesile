@@ -104,7 +104,7 @@ namespace RT_CS.utility.IO
         private static List<Texture> LoadTextures(JArray jArray)
         {
             List<Texture> list = new List<Texture>();
-            foreach(JObject texFiles in jArray)
+            foreach(JValue texFiles in jArray)
             {
                 list.Add(LoadTexture((string)texFiles));
             }
