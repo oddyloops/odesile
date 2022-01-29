@@ -64,7 +64,7 @@ namespace RT_CS.shapes
         {
             Vector3 normal = GetNormal(pt);
             float u = MathF.Atan2(normal.x, normal.z) / (2 * MathF.PI) + 0.5F;
-            float v = normal.y * 0.5F + 0.5F;
+            float v = 0.5F - (MathF.Asin(normal.y)/MathF.PI);
             return new Vector2() {  x = u, y = v };
         }
     }
